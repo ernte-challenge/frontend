@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import RegisterPage from "./components/User/RegisterPage";
+import LoginPage from "./components/User/LoginPage";
 import {LOCATIONS_LIST_PATH, LOCATIONS_MAP_PATH, LOGIN_PAGE_PATH, REGISTER_PATH, USER_PROFILE_PATH} from "./routes";
 import UserProfilePage from "./components/User/UserProfilePage";
 import LocationListPage from "./components/Location/LocationListPage";
@@ -26,7 +27,7 @@ const AppRoutes = () => {
             <RegisterPage/>
           </Route>
           <Route path={LOGIN_PAGE_PATH}>
-            <RegisterPage/>
+            <LoginPage/>
           </Route>
           <Route exact path="/">
             <WelcomePage/>

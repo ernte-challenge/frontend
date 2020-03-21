@@ -5,3 +5,4 @@ export const REGISTER_PATH : string = "/register";
 export const LOGIN_PAGE_PATH : string = "/login";
 
 export const API_MARKETS_PATH : string = "/api/markets";
+export const API_LOGIN_PATH : string = "/api/login";
