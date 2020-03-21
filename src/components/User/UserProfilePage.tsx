@@ -1,8 +1,5 @@
 import React from 'react';
-import styles from "../../styles";
-import {Button} from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import {REGISTER_PATH} from "../../routes";
+import {LOGIN_PAGE_PATH, REGISTER_PATH} from "../../routes";
 import {Redirect} from 'react-router-dom';
 
 const UserProfilePage = () => {
