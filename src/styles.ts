@@ -2,9 +2,9 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const styles = makeStyles({
   fullScreenSize: {
-    width: '100%',
-    height: '100%',
-    background: '#f1f1f1',
+    width: '100vw',
+    height: '100vh',
+    background: '#e1e1e1',
   },
   header: {
     width: '100%',

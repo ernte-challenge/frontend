@@ -1,30 +1,34 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
-import LocationList from "./components/Location/LocationList";
-import UserMapPage from "./components/Location/UserMapPage";
+import RegisterPage from "./components/User/RegisterPage";
+import {LOCATIONS_LIST_PATH, LOCATIONS_MAP_PATH, REGISTER_PATH, USER_PROFILE_PATH} from "./routes";
+import UserProfilePage from "./components/User/UserProfilePage";
+import LocationListPage from "./components/Location/LocationListPage";
+import LocationMapPage from "./components/Location/LocationMapPage";
 
 const AppRoutes = () => {
   return (
-    <Router>
-      <div>
         <Switch>
-          <Route path="/locations">
-            <LocationList/>
+          <Route path={LOCATIONS_MAP_PATH}>
+            <LocationMapPage/>
           </Route>
-          <Route path="/map">
-            <UserMapPage/>
+          <Route path={LOCATIONS_LIST_PATH}>
+            <LocationListPage/>
           </Route>
-          <Route path="/">
+          <Route path={USER_PROFILE_PATH}>
+            <UserProfilePage/>
+          </Route>
+          <Route path={REGISTER_PATH}>
+            <RegisterPage/>
+          </Route>
+          <Route exact path="/">
             <WelcomePage/>
           </Route>
         </Switch>
-      </div>
-    </Router>
   )
 };
 export default AppRoutes;

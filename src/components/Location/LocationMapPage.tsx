@@ -2,14 +2,16 @@ import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import styles from "../../styles";
 
-const UserMapPage = () => {
+const LocationMapPage = () => {
   const classes = styles();
+
+  //TODO Add map
 
   return (
     <div className={classes.fullScreenSize}>
-      <Skeleton variant="text" />
+      Hier ist bald eine Karte zu sehen
     </div>
   )
 };
 
-export default UserMapPage;
+export default LocationMapPage;

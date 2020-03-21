@@ -5,6 +5,8 @@ import MapIcon from "@material-ui/icons/Map";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
+import {Link} from "react-router-dom";
+import {LOCATIONS_LIST_PATH, LOCATIONS_MAP_PATH, USER_PROFILE_PATH} from "../../routes";
 
 const useStyles = makeStyles({
   stickToBottom: {
@@ -25,9 +27,15 @@ const NavigationBar = () => {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.stickToBottom}>
-      <BottomNavigationAction label="Karte" icon={<MapIcon/>}/>
-      <BottomNavigationAction label="Liste" icon={<LocationOnIcon/>}/>
-      <BottomNavigationAction label="Profil" icon={<PersonIcon/>}/>
+      <BottomNavigationAction component={Link}
+                              to={LOCATIONS_MAP_PATH}
+                              label="Karte" value="map" icon={<MapIcon/>}/>
+      <BottomNavigationAction component={Link}
+                              to={LOCATIONS_LIST_PATH}
+                              label="Liste" value="locations" icon={<LocationOnIcon/>}/>
+      <BottomNavigationAction component={Link}
+                              to={USER_PROFILE_PATH}
+                              label="Profil" value="profile" icon={<PersonIcon/>}/>
     </BottomNavigation>
   )
 };

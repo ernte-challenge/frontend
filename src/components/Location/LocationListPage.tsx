@@ -3,7 +3,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import styles from "../../styles";
 import LocationCard from "./LocationCard";
 
-const LocationList = () => {
+const LocationListPage = () => {
   const classes = styles();
 
   // TODO: Fetch all locations by distance, introduce state here
@@ -23,4 +23,4 @@ const LocationList = () => {
   )
 };
 
-export default LocationList;
+export default LocationListPage;
