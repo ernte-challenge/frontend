@@ -1,5 +1,5 @@
 import React from 'react';
-import Skeleton from '@material-ui/lab/Skeleton';
+import {Link} from "react-router-dom";
 import styles from "../../styles";
 import {Button} from "@material-ui/core";
 
@@ -8,8 +8,14 @@ const WelcomePage = () => {
 
   return (
     <div className={classes.fullScreenSize}>
-      <Button>Stöbern</Button>
-      <Button>Profil anlegen</Button>
+      <nav>
+        <Link to="/map">
+          <Button>Stöbern</Button>
+        </Link>
+        <Link to="/locations">
+          <Button>Profil anlegen</Button>
+        </Link>
+      </nav>
     </div>
   )
 };
