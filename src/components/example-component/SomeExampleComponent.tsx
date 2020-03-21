@@ -1,10 +1,11 @@
 import React from 'react';
+import './SomeExampleComponent.css';
 
 const SomeExampleComponent = () => {
-    const a = "some text"
+    const a = "some text";
 
     return (
-        <div>
+        <div className="someCssClass">
             Using some text from above: {a}
         </div>
     )
