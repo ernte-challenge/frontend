@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Container from '@material-ui/core/Container';
-import SomeExampleComponent from './components/example-component/SomeExampleComponent';
+import SomeExampleComponent from './components/SomeExampleComponent/SomeExampleComponent';
+import NavigationBar from './components/NavigationBar/NavigationBar';
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
         </div>
         <SomeExampleComponent/>
       </Container>
+      <NavigationBar/>
     </div>
   );
 }
