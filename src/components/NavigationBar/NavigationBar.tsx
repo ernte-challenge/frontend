@@ -1,7 +1,7 @@
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import PersonIcon from '@material-ui/icons/Person';
+import MapIcon from "@material-ui/icons/Map";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
@@ -25,9 +25,9 @@ const NavigationBar = () => {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.stickToBottom}>
-      <BottomNavigationAction label="Recents" icon={<RestoreIcon/>}/>
-      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon/>}/>
-      <BottomNavigationAction label="Nearby" icon={<LocationOnIcon/>}/>
+      <BottomNavigationAction label="Karte" icon={<MapIcon/>}/>
+      <BottomNavigationAction label="Liste" icon={<LocationOnIcon/>}/>
+      <BottomNavigationAction label="Profil" icon={<PersonIcon/>}/>
     </BottomNavigation>
   )
 };
