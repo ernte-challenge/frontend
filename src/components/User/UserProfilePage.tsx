@@ -9,7 +9,7 @@ const UserProfilePage = () => {
   const loggedIn = false;
 
   if (!loggedIn) {
-    return <Redirect to={REGISTER_PATH}/>
+    return <Redirect to={LOGIN_PAGE_PATH}/>
   }
 
   return (
