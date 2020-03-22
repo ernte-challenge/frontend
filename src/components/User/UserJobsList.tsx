@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
-import {API_JOBS_PATH, API_LOCATIONS_PATH} from "../../routes";
-import {FarmLocation, UserJob} from "../../global";
-import {CardActions, createStyles, Grid, List, Theme} from "@material-ui/core";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+import {API_JOBS_PATH} from "../../routes";
+import {UserJob} from "../../global";
+import {createStyles, List} from "@material-ui/core";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import {makeStyles} from "@material-ui/core/styles";
-import {PRIMARYBACKGROUND, SECONDARYBACKGROUND} from "../../styles/styles";
+import {PRIMARYBACKGROUND} from "../../styles/styles";
 import UserJobListItem from "./UserJobListItem";
 
 interface UserJobsListProperties {
-  userId: string
+  userId: string,
+  title: string,
+  jobStatus: "requested" | "accepted"
 }
 
 const useStyles = makeStyles(() =>
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-export default function UserJobsList({userId}: UserJobsListProperties) {
+export default function UserJobsList({userId, title, jobStatus}: UserJobsListProperties) {
   const classes = useStyles();
 
   const [error, setError] = useState<boolean>(false);
@@ -36,7 +36,7 @@ export default function UserJobsList({userId}: UserJobsListProperties) {
     (async () => {
       setLoading(true);
       setError(false);
-      await fetch(`${API_JOBS_PATH}?userId=${userId}`, {
+      await fetch(`${API_JOBS_PATH}?userId=${userId}&status=${jobStatus}`, {
         credentials: "same-origin"
       })
         .then(response => response.json())
@@ -55,7 +55,7 @@ export default function UserJobsList({userId}: UserJobsListProperties) {
   console.log(userJobs);
   const userJobListItems = userJobs.map((job, idx) => <UserJobListItem userJob={job} index={idx}/>);
   return (
-    <List className={classes.root} subheader={<ListSubheader>Deine nächsten Jobs:</ListSubheader>} component="nav">
+    <List className={classes.root} subheader={<ListSubheader color="primary">{title}</ListSubheader>} component="nav">
       {userJobListItems}
     </List>
   )
