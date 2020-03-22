@@ -4,21 +4,14 @@ import PersonIcon from "@material-ui/icons/Person";
 import MapIcon from "@material-ui/icons/Map";
 import ViewAgendaIcon from "@material-ui/icons/ViewAgenda";
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import styles from '../../styles/navigation';
 import {
   LOCATIONS_LIST_PATH,
   LOCATIONS_MAP_PATH,
   USER_PROFILE_PATH
 } from "../../routes";
 
-const useStyles = makeStyles({
-  stickToBottom: {
-    width: "100%",
-    position: "fixed",
-    bottom: 0
-  }
-});
 
 const NavigationBar = () => {
   const [value, setValue] = React.useState("recents");
@@ -27,7 +20,7 @@ const NavigationBar = () => {
     setValue(newValue);
   };
 
-  const classes = useStyles();
+  const classes = styles();
 
   return (
     <BottomNavigation

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Skeleton from "@material-ui/lab/Skeleton";
-import styles from "../../styles";
+import styles from "../../styles/general";
 import LocationCard from "./LocationCard";
 
 const LocationListPage = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../styles";
+import styles from "../../styles/general";
 import {Button} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {LOCATIONS_MAP_PATH, REGISTER_PATH} from "../../routes";
