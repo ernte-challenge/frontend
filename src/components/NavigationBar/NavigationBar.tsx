@@ -1,6 +1,8 @@
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import PersonIcon from "@material-ui/icons/Person";
+import InfoIcon from '@material-ui/icons/Info';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import HomeIcon from '@material-ui/icons/Home';
 import MapIcon from "@material-ui/icons/Map";
 import ViewAgendaIcon from "@material-ui/icons/ViewAgenda";
 import React from "react";
@@ -30,6 +32,13 @@ const NavigationBar = () => {
     >
       <BottomNavigationAction
         component={Link}
+        to={"/"}
+        label="Home"
+        value="map"
+        icon={<HomeIcon />}
+      />
+      <BottomNavigationAction
+        component={Link}
         to={LOCATIONS_MAP_PATH}
         label="Karte"
         value="map"
@@ -47,7 +56,14 @@ const NavigationBar = () => {
         to={USER_PROFILE_PATH}
         label="Profil"
         value="profile"
-        icon={<PersonIcon />}
+        icon={<PersonOutlineIcon />}
+      />
+      <BottomNavigationAction
+        component={Link}
+        to={USER_PROFILE_PATH}
+        label="Info"
+        value="info"
+        icon={<InfoIcon />}
       />
     </BottomNavigation>
   );
