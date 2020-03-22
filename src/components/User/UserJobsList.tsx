@@ -45,7 +45,7 @@ export default function UserJobsList({userId, title, jobStatus}: UserJobsListPro
         .then(data => setLoading(false))
         .catch(setError);
     })();
-  }, [userId]);
+  }, [userId, jobStatus]);
 
   if (error) {
     return <div>Error!</div>;

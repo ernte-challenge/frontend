@@ -13,38 +13,6 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {API_LOCATIONS_PATH} from "../../routes";
 
-
-interface LocationDetailPage {
-  locationId: string;
-}
-
-const data = {
-  street: "Gemüsestraße",
-  houseNumber: "12",
-  zipCode: "21521",
-  city: "München",
-  locationPhoneNumber: "0123 123 2123",
-  payedPerHour: "12",
-  bannerImageSrc: "https://s3.envato.com/files/256779564/EE4I3348%20copy.jpg",
-  bannerImageDescription: "harvesting tomatos"
-};
-const mainAreasOfActivity = [
-  "Mithilfe bei der Ernte von Gemüse und Obst",
-  "Mithilfe bei der Befüllung",
-  "Arbeiten im Freien"
-];
-
-const searchedProfile = [
-  "Körperliche Fitness",
-  "Zuverlässigkeit",
-  "Freude an der frischen Luft zu arbeiten"
-];
-
-const whatYouGet = [
-  "Frische Luft",
-  "Unendliche Dankbarkeit für ihr Engagement"
-];
-
 const LocationDetailPage = () => {
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -80,14 +48,17 @@ const LocationDetailPage = () => {
     locationPhoneNumber,
     payedPerHour,
     bannerImageSrc,
-    bannerImageDescription
-  } = data;
+    bannerImageDescription,
+    mainAreasOfActivity,
+    searchedProfile,
+    whatYouGet
+  } = location;
 
   return (
-    <Grid container style={{ backgroundColor: "white" }}>
+    <Grid container style={{ backgroundColor: 'white', maxWidth: "480px", margin: "0 auto"  }}>
       <Grid>
         <img
-          style={{ height: "220px", width: "100%", backgroundSize: "cover" }}
+          style={{ height: "220px", width: "100%", backgroundSize: "cover"}}
           className="bannerImage"
           src={bannerImageSrc}
           alt={bannerImageDescription}

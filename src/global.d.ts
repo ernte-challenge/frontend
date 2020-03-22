@@ -5,8 +5,17 @@ export interface FarmLocation {
   usersRegistered: number;
   usersNeeded: number;
   distance: number;
-  salary: number;
-  imageUrl: string;
+  payedPerHour: number;
+  bannerImageSrc: string;
+  bannerImageDescription: string;
+  locationPhoneNumber: string;
+  city: string,
+  zipCode: string
+  houseNumber: string,
+  street: string
+  mainAreasOfActivity: string[]
+  searchedProfile: string[]
+  whatYouGet: string[]
 }
 
 export interface UserJob {

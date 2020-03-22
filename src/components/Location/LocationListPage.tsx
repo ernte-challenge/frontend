@@ -5,8 +5,6 @@ import { FarmLocation } from "../../global";
 import { Container } from "@material-ui/core";
 import Copyright from "../Copyright/Copyright";
 import Box from "@material-ui/core/Box";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const LocationListPage = () => {
@@ -42,8 +40,8 @@ const LocationListPage = () => {
       usersRegistered={loc.usersRegistered}
       usersNeeded={loc.usersNeeded}
       distance={loc.distance}
-      salary={loc.salary}
-      imageUrl={loc.imageUrl}
+      salary={loc.payedPerHour}
+      imageUrl={loc.bannerImageSrc}
       id={loc.id}
     />
   ));

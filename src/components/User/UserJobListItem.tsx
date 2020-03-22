@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 });
 
 export default function UserJobListItem({userJob, index}: UserJobListItemProperties) {
-  const salaryString = `${userJob.location.salary} EUR`;
+  const salaryString = `${userJob.location.payedPerHour} EUR`;
   const distanceString = `${userJob.location.distance} KM`;
 
   const classes = useStyles();
