@@ -73,7 +73,7 @@ const LocationDetailPage = () => {
   } = data;
 
   return (
-    <React.Fragment>
+    <Grid container style={{ backgroundColor: "white" }}>
       <Grid>
         <img
           style={{ height: "220px", width: "100%", backgroundSize: "cover" }}
@@ -218,7 +218,7 @@ const LocationDetailPage = () => {
           Bewerben
         </Button>
       </Container>
-    </React.Fragment>
+    </Grid>
   );
 };
 
