@@ -9,6 +9,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from '../../styles/navigation';
 import {
+  INFO_PATH,
   LOCATIONS_LIST_PATH,
   LOCATIONS_MAP_PATH,
   USER_PROFILE_PATH
@@ -34,7 +35,7 @@ const NavigationBar = () => {
         component={Link}
         to={"/"}
         label="Home"
-        value="map"
+        value="home"
         icon={<HomeIcon />}
       />
       <BottomNavigationAction
@@ -60,7 +61,7 @@ const NavigationBar = () => {
       />
       <BottomNavigationAction
         component={Link}
-        to={USER_PROFILE_PATH}
+        to={INFO_PATH}
         label="Info"
         value="info"
         icon={<InfoIcon />}

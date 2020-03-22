@@ -15,7 +15,7 @@ import Copyright from "../Copyright/Copyright";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -92,7 +92,7 @@ export default function LoginPage() {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
+      <Box mt={3}>
         <Copyright/>
       </Box>
     </Container>
