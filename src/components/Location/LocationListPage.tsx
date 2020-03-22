@@ -7,6 +7,7 @@ import Copyright from "../Copyright/Copyright";
 import Box from "@material-ui/core/Box";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const LocationListPage = () => {
   const [error, setError] = useState<boolean>(false);
@@ -31,7 +32,7 @@ const LocationListPage = () => {
     return <div>Error!</div>;
   }
   if (loading) {
-    return <div>Loading...</div>;
+    return <CircularProgress disableShrink />;
   }
   const cards = locations.map((loc: FarmLocation) => (
     <LocationCard

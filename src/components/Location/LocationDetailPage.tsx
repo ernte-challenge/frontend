@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { API_LOCATIONS_PATH } from "../../routes";
 import LocationCard from "./LocationCard";
 import {FarmLocation} from "../../global";
+import {CircularProgress} from "@material-ui/core";
 
 interface LocationDetailPage {
   locationId: string;
@@ -29,7 +30,7 @@ const LocationDetailPage = ({ locationId }: LocationDetailPage) => {
     return <div>Error!</div>;
   }
   if (loading || !location) {
-    return <div>Loading...</div>;
+    return <CircularProgress disableShrink />;
   }
   return (
     <LocationCard
