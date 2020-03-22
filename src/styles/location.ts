@@ -6,9 +6,10 @@ const styles = makeStyles({
     height: '200px',
   },
   locationCard: {
-    margin: '2rem 1rem 0 1rem',
+    margin: '2rem auto 0 auto',
     borderRadius: '2rem',
-    width: '320px',
+    minWidth: '320px',
+    maxWidth: '480px',
   },
   usersNeeded: {
     backgroundColor: SECONDARY01,

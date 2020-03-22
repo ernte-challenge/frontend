@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import styles from '../../styles/navigation';
 import {
   INFO_PATH,
-  LOCATIONS_LIST_PATH,
+  LOCATIONS_PATH,
   LOCATIONS_MAP_PATH,
   USER_PROFILE_PATH
 } from "../../routes";
@@ -47,7 +47,7 @@ const NavigationBar = () => {
       />
       <BottomNavigationAction
         component={Link}
-        to={LOCATIONS_LIST_PATH}
+        to={LOCATIONS_PATH}
         label="Liste"
         value="locations"
         icon={<ViewAgendaIcon />}

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,  } from "react";
+import { useParams } from 'react-router-dom';
 import { FarmLocation } from "../../global";
 import {
   Grid,
@@ -9,6 +10,10 @@ import {
   Button
 } from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import {API_LOCATIONS_PATH} from "../../routes";
+
+
 interface LocationDetailPage {
   locationId: string;
 }
@@ -44,8 +49,9 @@ const LocationDetailPage = () => {
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [location, setLocation] = useState<FarmLocation | null>(null);
+  const { locationId } = useParams();
 
-  /*  useEffect(() => {
+  useEffect(() => {
     (async () => {
       setLoading(true);
       setError(false);
@@ -54,16 +60,17 @@ const LocationDetailPage = () => {
       })
         .then(response => response.json())
         .then(setLocation)
+        .then(data => setLoading(false))
         .catch(setError);
     })();
-  }, [locationId]); */
+  }, [locationId]);
 
-  /*  if (error) {
+  if (error) {
     return <div>Error!</div>;
   }
   if (loading || !location) {
-    return <div>Loading...</div>;
-  } */
+    return <CircularProgress disableShrink />;
+  }
 
   const {
     street,

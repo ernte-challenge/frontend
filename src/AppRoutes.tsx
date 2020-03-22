@@ -4,7 +4,7 @@ import WelcomePage from "./components/WelcomePage/WelcomePage";
 import RegisterPage from "./components/SignUp/RegisterPage";
 import LoginPage from "./components/SignUp/LoginPage";
 import {
-  LOCATIONS_LIST_PATH,
+  LOCATIONS_PATH,
   LOCATIONS_MAP_PATH,
   LOGIN_PAGE_PATH,
   REGISTER_PATH,
@@ -21,7 +21,7 @@ const AppRoutes = () => {
       <Route path={LOCATIONS_MAP_PATH}>
         <LocationMapPage />
       </Route>
-      <Route path={LOCATIONS_LIST_PATH}>
+      <Route exact path={LOCATIONS_PATH}>
         <LocationListPage />
       </Route>
       <Route path={USER_PROFILE_PATH}>
@@ -30,7 +30,7 @@ const AppRoutes = () => {
       <Route path={REGISTER_PATH}>
         <RegisterPage />
       </Route>
-      <Route path="/location-detail">
+      <Route path={`${LOCATIONS_PATH}/:locationId`}>
         <LocationDetailPage />
       </Route>
       <Route path={LOGIN_PAGE_PATH}>

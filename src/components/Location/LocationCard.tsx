@@ -10,6 +10,8 @@ import {
 } from "@material-ui/core/";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import styles from "../../styles/location";
+import {LOCATIONS_PATH} from "../../routes";
+import {Link} from "react-router-dom";
 
 interface LocationCardProperties {
   locationName: string;
@@ -19,7 +21,7 @@ interface LocationCardProperties {
   distance: number;
   salary: number;
   imageUrl: string;
-  key: string;
+  id: string;
 }
 
 const LocationCard = ({
@@ -30,14 +32,14 @@ const LocationCard = ({
   distance,
   salary,
   imageUrl,
-  key
+  id
 }: LocationCardProperties) => {
   const classes = styles();
   return (
-    console.log(distance),
     (
       <Card className={classes.locationCard}>
-        <CardActionArea>
+        <Link to={LOCATIONS_PATH + "/" + id}>
+          <CardActionArea>
           <CardMedia
             className={classes.bannerImage}
             image="https://image.shutterstock.com/image-photo/tractor-spraying-pesticides-on-soybean-600w-653708227.jpg"
@@ -70,6 +72,7 @@ const LocationCard = ({
             <Typography variant="body2">{whatToDoSubline}</Typography>
           </CardContent>
         </CardActionArea>
+        </Link>
         <CardActions>
           <Grid justify="space-between" container>
             <Typography className={classes.distance} gutterBottom>

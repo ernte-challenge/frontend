@@ -32,6 +32,7 @@ const LocationListPage = () => {
     return <div>Error!</div>;
   }
   if (loading) {
+    //TODO: Spinner in externe Compopnent, und dann zentralisieren
     return <CircularProgress disableShrink />;
   }
   const cards = locations.map((loc: FarmLocation) => (
@@ -43,7 +44,7 @@ const LocationListPage = () => {
       distance={loc.distance}
       salary={loc.salary}
       imageUrl={loc.imageUrl}
-      key={loc.id}
+      id={loc.id}
     />
   ));
   return (
