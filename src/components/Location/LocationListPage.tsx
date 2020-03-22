@@ -1,27 +1,46 @@
-import React, { useEffect } from "react";
-import Skeleton from "@material-ui/lab/Skeleton";
+import React, {useEffect, useState} from "react";
 import styles from "../../styles/general";
 import LocationCard from "./LocationCard";
+import {API_LOCATIONS_PATH} from "../../routes";
+import {FarmLocation} from "../../global";
 
 const LocationListPage = () => {
   const classes = styles();
 
-  // TODO: Fetch all locations by distance, introduce state here
+  const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [locations, setLocations] = useState<Array<FarmLocation>>([]);
 
-  return (
-    <div className={classes.fullScreenSize}>
-      <LocationCard
-        locationName={"someName"}
-        whatToDoSubline={"Tracktor fahren"}
-        salary={11.5}
-        distance={200}
-        usersNeeded={6}
-        usersRegistered={4}
-        imageUrl={"abc"}
-        key={1}
-      />
-    </div>
-  );
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      setError(false);
+      await fetch(API_LOCATIONS_PATH, {
+        credentials: "same-origin"
+      })
+        .then(response => response.json())
+        .then(setLocations)
+        .catch(setError);
+    })();
+  }, []);
+
+  if (error) {
+    return <div>Error!</div>;
+  }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  return locations.map((loc: FarmLocation) => (
+    <LocationCard
+      locationName={loc.name}
+      whatToDoSubline={loc.whatToDoSubline}
+      usersRegistered={loc.usersRegistered}
+      usersNeeded={loc.usersNeeded}
+      distance={loc.distance}
+      salary={loc.salary}
+      imageUrl={loc.imageUrl}
+    />
+  ));
 };
 
 export default LocationListPage;

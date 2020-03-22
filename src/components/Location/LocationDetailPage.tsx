@@ -1,56 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { API_MARKETS_PATH } from "../../routes";
+import { API_LOCATIONS_PATH } from "../../routes";
 import LocationCard from "./LocationCard";
+import {FarmLocation} from "../../global";
 
 interface LocationDetailPage {
   locationId: string;
 }
 
-interface Location {
-  name: string;
-  whatToDoSubline: string;
-  usersRegistered: number;
-  usersNeeded: number;
-  distance: number;
-  salary: number;
-  imageUrl: string;
-}
-
 const LocationDetailPage = ({ locationId }: LocationDetailPage) => {
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [locations, setLocations] = useState<Array<Location>>([]);
+  const [location, setLocation] = useState<FarmLocation | null>(null);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       setError(false);
-      await fetch(API_MARKETS_PATH, {
+      await fetch(`${API_LOCATIONS_PATH}/${locationId}`, {
         credentials: "same-origin"
       })
         .then(response => response.json())
-        .then(setLocations)
+        .then(setLocation)
         .catch(setError);
     })();
-  }, []);
+  }, [locationId]);
 
   if (error) {
     return <div>Error!</div>;
   }
-  if (loading) {
+  if (loading || !location) {
     return <div>Loading...</div>;
   }
-  return locations.map(loc => (
+  return (
     <LocationCard
-      locationName={loc.name}
-      whatToDoSubline={loc.whatToDoSubline}
-      usersRegistered={loc.usersRegistered}
-      usersNeeded={loc.usersNeeded}
-      distance={loc.distance}
-      salary={loc.salary}
-      imageUrl={loc.imageUrl}
+      locationName={location.name}
+      whatToDoSubline={location.whatToDoSubline}
+      usersRegistered={location.usersRegistered}
+      usersNeeded={location.usersNeeded}
+      distance={location.distance}
+      salary={location.salary}
+      imageUrl={location.imageUrl}
     />
-  ));
+  );
 };
 
 export default LocationDetailPage;
