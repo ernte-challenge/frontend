@@ -19,7 +19,9 @@ const data = {
   zipCode: "21521",
   city: "München",
   locationPhoneNumber: "0123 123 2123",
-  payedPerHour: "12"
+  payedPerHour: "12",
+  bannerImageSrc: "https://s3.envato.com/files/256779564/EE4I3348%20copy.jpg",
+  bannerImageDescription: "harvesting tomatos"
 };
 const mainAreasOfActivity = [
   "Mithilfe bei der Ernte von Gemüse und Obst",
@@ -69,7 +71,9 @@ const LocationDetailPage = () => {
     zipCode,
     city,
     locationPhoneNumber,
-    payedPerHour
+    payedPerHour,
+    bannerImageSrc,
+    bannerImageDescription
   } = data;
 
   return (
@@ -78,8 +82,8 @@ const LocationDetailPage = () => {
         <img
           style={{ height: "220px", width: "100%", backgroundSize: "cover" }}
           className="bannerImage"
-          src="https://s3.envato.com/files/256779564/EE4I3348%20copy.jpg"
-          alt="harvest tomatos"
+          src={bannerImageSrc}
+          alt={bannerImageDescription}
         />
       </Grid>
       <Container style={{ marginBottom: "64px" }}>
