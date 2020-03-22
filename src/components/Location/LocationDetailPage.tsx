@@ -1,21 +1,22 @@
-import React, {useEffect, useState} from 'react';
-import {API_MARKETS_PATH} from "../../routes";
+import React, { useEffect, useState } from "react";
+import { API_MARKETS_PATH } from "../../routes";
 import LocationCard from "./LocationCard";
 
 interface LocationDetailPage {
-  locationId: string
-};
+  locationId: string;
+}
 
 interface Location {
-  name: string,
-  usersRegistered: number,
-  usersNeeded: number,
-  distance: number,
-  salary: number,
-  imageUrl: string
-};
+  name: string;
+  whatToDoSubline: string;
+  usersRegistered: number;
+  usersNeeded: number;
+  distance: number;
+  salary: number;
+  imageUrl: string;
+}
 
-const LocationDetailPage = ({locationId}: LocationDetailPage) => {
+const LocationDetailPage = ({ locationId }: LocationDetailPage) => {
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [locations, setLocations] = useState<Array<Location>>([]);
@@ -25,7 +26,7 @@ const LocationDetailPage = ({locationId}: LocationDetailPage) => {
       setLoading(true);
       setError(false);
       await fetch(API_MARKETS_PATH, {
-        credentials: 'same-origin',
+        credentials: "same-origin"
       })
         .then(response => response.json())
         .then(setLocations)
@@ -34,17 +35,22 @@ const LocationDetailPage = ({locationId}: LocationDetailPage) => {
   }, []);
 
   if (error) {
-    return <div>Error!</div>
+    return <div>Error!</div>;
   }
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
-  return (
-    locations.map((loc) => (
-      <LocationCard locationName={loc.name} usersRegistered={loc.usersRegistered}
-                    usersNeeded={loc.usersNeeded} distance={loc.distance}
-                    salary={loc.salary} imageUrl={loc.imageUrl}/>))
-  );
+  return locations.map(loc => (
+    <LocationCard
+      locationName={loc.name}
+      whatToDoSubline={loc.whatToDoSubline}
+      usersRegistered={loc.usersRegistered}
+      usersNeeded={loc.usersNeeded}
+      distance={loc.distance}
+      salary={loc.salary}
+      imageUrl={loc.imageUrl}
+    />
+  ));
 };
 
 export default LocationDetailPage;
