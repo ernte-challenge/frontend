@@ -1,5 +1,5 @@
 import React from 'react';
-import {LOGIN_PAGE_PATH} from "../../routes";
+import {EDIT_PROFILE_PATH, LOGIN_PAGE_PATH} from "../../routes";
 import {Redirect} from 'react-router-dom';
 import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Copyright from "../Copyright/Copyright";
 import UserJobsList from "./UserJobsList";
+import Button from "@material-ui/core/Button";
+import UserContext from "../../UserContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -40,6 +42,12 @@ export default function UserProfilePage({loggedIn = true}) {
     return <Redirect to={LOGIN_PAGE_PATH}/>
   }
 
+  const firstName = (
+    <UserContext.Consumer>
+      {user => <span>{user.firstName}</span>}
+    </UserContext.Consumer>
+  );
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
@@ -48,10 +56,18 @@ export default function UserProfilePage({loggedIn = true}) {
           <PersonIcon/>
         </Avatar>
         <Typography component="h1" variant="h5">
-          Dein Profil
+          Hallo, {firstName}
         </Typography>
         <UserJobsList title='MEINE NÄCHSTEN JOBS' userId={userId} jobStatus="accepted"/>
         <UserJobsList title='OFFENE BEWERBUNGEN' userId={userId} jobStatus="requested"/>
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          href={EDIT_PROFILE_PATH}
+        >Profil bearbeiten
+        </Button>
       </div>
       <Box mt={8}>
         <Copyright/>

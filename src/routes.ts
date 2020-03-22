@@ -5,6 +5,7 @@ export const REGISTER_PATH : string = "/register";
 export const LOGIN_PAGE_PATH : string = "/login";
 export const FORGOT_PASSWORD_PATH : string = "/";
 export const INFO_PATH : string = "/info";
+export const EDIT_PROFILE_PATH : string = "/profile/edit";
 
 
 export const API_LOCATIONS_PATH : string = "/api/locations";
