@@ -33,6 +33,7 @@ const NavigationBar = () => {
     >
       <BottomNavigationAction
         component={Link}
+        className={classes.navButtons}
         to={"/"}
         label="Home"
         value="home"
@@ -40,6 +41,7 @@ const NavigationBar = () => {
       />
       <BottomNavigationAction
         component={Link}
+        className={classes.navButtons}
         to={LOCATIONS_MAP_PATH}
         label="Karte"
         value="map"
@@ -47,6 +49,7 @@ const NavigationBar = () => {
       />
       <BottomNavigationAction
         component={Link}
+        className={classes.navButtons}
         to={LOCATIONS_PATH}
         label="Liste"
         value="locations"
@@ -54,6 +57,7 @@ const NavigationBar = () => {
       />
       <BottomNavigationAction
         component={Link}
+        className={classes.navButtons}
         to={USER_PROFILE_PATH}
         label="Profil"
         value="profile"
@@ -61,6 +65,7 @@ const NavigationBar = () => {
       />
       <BottomNavigationAction
         component={Link}
+        className={classes.navButtons}
         to={INFO_PATH}
         label="Info"
         value="info"

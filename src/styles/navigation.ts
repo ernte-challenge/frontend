@@ -5,7 +5,10 @@ const styles = makeStyles({
     width: "100%",
     position: "fixed",
     bottom: 0
-  }
+  },
+  navButtons: {
+    boxSizing: 'border-box',
+  },
 });
 
 export default styles;
