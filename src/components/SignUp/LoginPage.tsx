@@ -45,6 +45,8 @@ export default function LoginPage() {
     setLoading(true);
     fetch(API_REGISTER_PATH, {
       method: 'POST',
+      //TODO: ENCRTYPT PASSWORD
+
       body: JSON.stringify({
         mail,
         password
