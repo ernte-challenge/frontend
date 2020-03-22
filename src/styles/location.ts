@@ -3,7 +3,11 @@ import {SECONDARY01, SECONDARY02} from './styles';
 
 const styles = makeStyles({
   bannerImage: {
-    height: '240px',
+    height: '200px',
+  },
+  locationCard: {
+    margin: '2rem 1rem 0 1rem',
+    borderRadius: '2rem'
   },
   usersNeeded: {
     backgroundColor: SECONDARY01,

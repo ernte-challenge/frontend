@@ -23,17 +23,17 @@ interface LocationCardProperties {
 
 
 const LocationCard = ({
-  locationName,
-  whatToDoSubline,
-  usersRegistered,
-  usersNeeded,
-  distance,
-  salary,
-  imageUrl
-}: LocationCardProperties) => {
+                        locationName,
+                        whatToDoSubline,
+                        usersRegistered,
+                        usersNeeded,
+                        distance,
+                        salary,
+                        imageUrl
+                      }: LocationCardProperties) => {
   const classes = styles();
   return (
-    <Card>
+    <Card className={classes.locationCard}>
       <CardActionArea>
         <CardMedia
           className={classes.bannerImage}
@@ -56,21 +56,26 @@ const LocationCard = ({
                 console.log(`${locationName} add to favorites`);
               }}
             >
-              <BookmarkBorderIcon />
+              <BookmarkBorderIcon/>
             </Grid>
           </Grid>
         </CardMedia>
         <CardContent>
-          <Typography gutterBottom variant="h5">
+          <Typography gutterBottom variant="h6">
             {locationName}
           </Typography>
           <Typography variant="body2">{whatToDoSubline}</Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Typography className={classes.distance} gutterBottom>
-          {distance} km {salary} €
-        </Typography>
+          <Grid justify="space-between" container >
+            <Typography className={classes.distance} gutterBottom>
+              {distance} km entfernt
+            </Typography>
+            <Typography className={classes.distance} gutterBottom>
+              {salary} € / Std.
+            </Typography>
+          </Grid>
       </CardActions>
     </Card>
   );

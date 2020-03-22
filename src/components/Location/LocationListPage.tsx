@@ -2,6 +2,10 @@ import React, {useEffect, useState} from "react";
 import LocationCard from "./LocationCard";
 import {API_LOCATIONS_PATH} from "../../routes";
 import {FarmLocation} from "../../global";
+import {Container} from "@material-ui/core";
+import Copyright from "../Copyright/Copyright";
+import Box from "@material-ui/core/Box";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 const LocationListPage = () => {
   const [error, setError] = useState<boolean>(false);
@@ -28,7 +32,7 @@ const LocationListPage = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  const cards =  locations.map((loc: FarmLocation) => (
+  const cards = locations.map((loc: FarmLocation) => (
     <LocationCard
       locationName={loc.name}
       whatToDoSubline={loc.whatToDoSubline}
@@ -40,7 +44,14 @@ const LocationListPage = () => {
       key={loc.id}
     />
   ));
-  return <div>{cards}</div>
+  return (
+    <Container>
+        {cards}
+        <Box mt={8}>
+          <Copyright/>
+        </Box>
+    </Container>
+  )
 };
 
 export default LocationListPage;
