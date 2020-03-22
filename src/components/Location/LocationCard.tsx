@@ -9,7 +9,7 @@ import {
   Typography
 } from "@material-ui/core/";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
-import styles from '../../styles/location';
+import styles from "../../styles/location";
 
 interface LocationCardProperties {
   locationName: string;
@@ -19,56 +19,59 @@ interface LocationCardProperties {
   distance: number;
   salary: number;
   imageUrl: string;
+  key: string;
 }
 
-
 const LocationCard = ({
-                        locationName,
-                        whatToDoSubline,
-                        usersRegistered,
-                        usersNeeded,
-                        distance,
-                        salary,
-                        imageUrl
-                      }: LocationCardProperties) => {
+  locationName,
+  whatToDoSubline,
+  usersRegistered,
+  usersNeeded,
+  distance,
+  salary,
+  imageUrl,
+  key
+}: LocationCardProperties) => {
   const classes = styles();
   return (
-    <Card className={classes.locationCard}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.bannerImage}
-          image="https://image.shutterstock.com/image-photo/tractor-spraying-pesticides-on-soybean-600w-653708227.jpg"
-          title={locationName}
-        >
-          <Grid
-            container
-            direction="row"
-            justify="space-between"
-            alignItems="center"
+    console.log(distance),
+    (
+      <Card className={classes.locationCard}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.bannerImage}
+            image="https://image.shutterstock.com/image-photo/tractor-spraying-pesticides-on-soybean-600w-653708227.jpg"
+            title={locationName}
           >
-            <Typography className={classes.usersNeeded}>
-              {usersRegistered} / {usersNeeded} benötigt
-            </Typography>
             <Grid
-              aria-label="bookmark"
-              className={classes.bookmarkIcon}
-              onClick={() => {
-                console.log(`${locationName} add to favorites`);
-              }}
+              container
+              direction="row"
+              justify="space-between"
+              alignItems="center"
             >
-              <BookmarkBorderIcon/>
+              <Typography className={classes.usersNeeded}>
+                {usersRegistered} / {usersNeeded} benötigt
+              </Typography>
+              <Grid
+                aria-label="bookmark"
+                className={classes.bookmarkIcon}
+                onClick={() => {
+                  console.log(`${locationName} add to favorites`);
+                }}
+              >
+                <BookmarkBorderIcon />
+              </Grid>
             </Grid>
-          </Grid>
-        </CardMedia>
-        <CardContent>
-          <Typography gutterBottom variant="h6">
-            {locationName}
-          </Typography>
-          <Typography variant="body2">{whatToDoSubline}</Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-          <Grid justify="space-between" container >
+          </CardMedia>
+          <CardContent>
+            <Typography gutterBottom variant="h6">
+              {locationName}
+            </Typography>
+            <Typography variant="body2">{whatToDoSubline}</Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Grid justify="space-between" container>
             <Typography className={classes.distance} gutterBottom>
               {distance} km entfernt
             </Typography>
@@ -76,8 +79,9 @@ const LocationCard = ({
               {salary} € / Std.
             </Typography>
           </Grid>
-      </CardActions>
-    </Card>
+        </CardActions>
+      </Card>
+    )
   );
 };
 
