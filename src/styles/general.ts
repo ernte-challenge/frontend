@@ -17,7 +17,14 @@ const styles = makeStyles({
     paddingTop: "1rem",
     paddingBottom: "0.5rem",
     height: "4rem"
-  }
+  },
+  flexColumn: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  fullFlex: {
+    flex: '1 1 0',
+  },
 });
 
 export default styles;
