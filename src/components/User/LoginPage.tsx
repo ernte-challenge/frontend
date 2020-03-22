@@ -99,7 +99,7 @@ export default function LoginPage() {
             </Grid>
             <Grid item>
               <Link href={REGISTER_PATH} variant="body2">
-                {"Du hast keinen Account? Hier registrieren"}
+                {"Hier Registrieren!"}
               </Link>
             </Grid>
           </Grid>
