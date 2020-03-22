@@ -1,39 +1,115 @@
 import React from 'react';
-import styles from "../../styles/general";
-import {Button} from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import {API_LOGIN_PATH, REGISTER_PATH} from "../../routes";
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import {makeStyles} from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import {REGISTER_PATH} from "../../routes";
+import {APP_NAME} from "../../const";
 
-const RegisterPage = () => {
-  const classes = styles();
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        {APP_NAME}
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
-  // TODO : style form
-  // TODO : Add POST on submit, href  does a GET instead of a POST
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+export default function LoginPage() {
+  const classes = useStyles();
 
   return (
-    <div className={classes.fullScreenSize}>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="stretch"
-        justify="center"
-        style={{minHeight: '100vh'}}
-      >
-        <Button variant="contained" color="secondary" href={REGISTER_PATH} style={{margin: "1rem"}}>
-          Zur Registrierung
-        </Button>
-
-        <form noValidate autoComplete="off">
-          <TextField id="mail" label="E-Mail"/>
-          <TextField id="password" label="Passwort"/>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline/>
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon/>
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Anmelden
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="E-Mail"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Passwort"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Anmelden
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Passwort vergessen?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href={REGISTER_PATH} variant="body2">
+                {"Du hast keinen Account? Hier registrieren"}
+              </Link>
+            </Grid>
+          </Grid>
         </form>
-
-        <Button variant="contained" color="primary" href={API_LOGIN_PATH} style={{margin: "1rem"}}>Anmelden</Button>
-      </Grid>
-    </div>
-  )
-};
-
-export default RegisterPage;
+      </div>
+      <Box mt={8}>
+        <Copyright/>
+      </Box>
+    </Container>
+  );
+}
