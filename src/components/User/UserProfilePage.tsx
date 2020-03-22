@@ -42,12 +42,6 @@ export default function UserProfilePage({loggedIn = true}) {
     return <Redirect to={LOGIN_PAGE_PATH}/>
   }
 
-  const firstName = (
-    <UserContext.Consumer>
-      {user => <span>{user.firstName}</span>}
-    </UserContext.Consumer>
-  );
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
@@ -56,7 +50,7 @@ export default function UserProfilePage({loggedIn = true}) {
           <PersonIcon/>
         </Avatar>
         <Typography component="h1" variant="h5">
-          Hallo, {firstName}
+          Dein Profil
         </Typography>
         <UserJobsList title='MEINE NÄCHSTEN JOBS' userId={userId} jobStatus="accepted"/>
         <UserJobsList title='OFFENE BEWERBUNGEN' userId={userId} jobStatus="requested"/>
