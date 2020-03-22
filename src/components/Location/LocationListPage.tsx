@@ -5,6 +5,7 @@ import { FarmLocation } from "../../global";
 import { Container } from "@material-ui/core";
 import Copyright from "../Copyright/Copyright";
 import Box from "@material-ui/core/Box";
+<<<<<<< HEAD
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -47,6 +48,7 @@ const LocationListPage = () => {
     />
   ));
   return (
+<<<<<<< HEAD
     <Grid container justify={"center"} alignItems={"center"} direction={"column"}>
         {cards}
         <Box mt={8}>
@@ -54,6 +56,15 @@ const LocationListPage = () => {
         </Box>
     </Grid>
   )
+=======
+    <Container>
+      {cards}
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
+>>>>>>> location-detail-page
 };
 
 export default LocationListPage;
