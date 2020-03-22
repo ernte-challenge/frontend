@@ -1,25 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NavigationBar from './components/NavigationBar/NavigationBar';
+import AppRoutes from "./AppRoutes";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import {MuiThemeProvider} from "@material-ui/core";
+import {BrowserRouter as Router} from "react-router-dom";
+import UserContext from "./UserContext";
+
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#4D917E'
+      },
+      secondary: {
+        main: '#DCDCDC'
+      }
+    }
+  },
+)
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MuiThemeProvider theme={theme}>
+        <UserContext.Provider value={{firstName: 'Max', lastName: 'Mustermann'}}>
+          <Router>
+            <div className="App">
+              <AppRoutes/>
+              <NavigationBar/>
+            </div>
+          </Router>
+        </UserContext.Provider>
+    </MuiThemeProvider>
   );
 }
 
