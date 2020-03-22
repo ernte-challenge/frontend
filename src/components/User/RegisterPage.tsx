@@ -1,39 +1,135 @@
 import React from 'react';
-import generalStyles from "../../styles/general";
-import styles from '../../styles/user';
-import {Button} from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import {makeStyles} from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import {FORGOT_PASSWORD_PATH, REGISTER_PATH} from "../../routes";
+import {APP_NAME} from "../../const";
 
-const RegisterPage = () => {
-  const generalClasses = generalStyles();
-  const classes = styles();
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="/">
+        {APP_NAME}
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
-  // TODO : style form
-  // TODO : Add POST on submit
-  // TODO : Validation
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '90%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+export default function LoginPage() {
+  const classes = useStyles();
 
   return (
-    <div className={generalClasses.fullScreenSize}>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="stretch"
-        justify="center"
-        className={classes.registerGrid}
-      >
-        <form noValidate autoComplete="off" >
-          <TextField id="firstName" label="Vorname" />
-          <TextField id="lastName" label="Nachname" />
-          <TextField id="mail" label="E-Mail" />
-          <TextField id="password" label="Passwort" />
-          <TextField id="password2" label="Passwort wiederholen" />
+    <Container component="main" maxWidth="xs">
+      <CssBaseline/>
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon/>
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Registrieren
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="E-Mail"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="firstName"
+            label="Vorname"
+            name="firstName"
+            autoComplete="given-name"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="lastName"
+            label="Nachname"
+            name="lastName"
+            autoComplete="family-name"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Passwort"
+            type="password"
+            id="password"
+            autoComplete="new-password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Jetzt registrieren!
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href={FORGOT_PASSWORD_PATH} variant="body2">
+                Passwort vergessen?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href={REGISTER_PATH} variant="body2">
+                {"Hier Registrieren!"}
+              </Link>
+            </Grid>
+          </Grid>
         </form>
-        <Button variant="contained" color="primary" href="/" className={classes.registerButton}>Registrieren</Button>
-      </Grid>
-    </div>
-  )
-};
-
-export default RegisterPage;
+      </div>
+      <Box mt={8}>
+        <Copyright/>
+      </Box>
+    </Container>
+  );
+}
