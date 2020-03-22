@@ -8,3 +8,10 @@ export interface FarmLocation {
   salary: number;
   imageUrl: string;
 }
+
+export interface UserJob {
+  location: FarmLocation;
+  id: string;
+  startDate: Date,
+  endDate: Date,
+}
