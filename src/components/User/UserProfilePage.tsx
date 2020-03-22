@@ -13,7 +13,7 @@ import UserJobsList from "./UserJobsList";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    paddingTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -50,8 +50,8 @@ export default function UserProfilePage({loggedIn = true}) {
         <Typography component="h1" variant="h5">
           Dein Profil
         </Typography>
-        <UserJobsList title='Meine nächsten Jobs' userId={userId} jobStatus="accepted"/>
-        <UserJobsList title='Offene Bewerbungen' userId={userId} jobStatus="requested"/>
+        <UserJobsList title='MEINE NÄCHSTEN JOBS' userId={userId} jobStatus="accepted"/>
+        <UserJobsList title='OFFENE BEWERBUNGEN' userId={userId} jobStatus="requested"/>
       </div>
       <Box mt={8}>
         <Copyright/>

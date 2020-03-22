@@ -8,7 +8,7 @@ const WelcomePage = () => {
   const classes = styles();
 
   return (
-    <div className={classes.fullScreenSize}>
+    <div>
       <Grid
         container
         spacing={0}

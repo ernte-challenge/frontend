@@ -6,6 +6,7 @@ import {Container} from "@material-ui/core";
 import Copyright from "../Copyright/Copyright";
 import Box from "@material-ui/core/Box";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Grid from "@material-ui/core/Grid";
 
 const LocationListPage = () => {
   const [error, setError] = useState<boolean>(false);
@@ -45,12 +46,12 @@ const LocationListPage = () => {
     />
   ));
   return (
-    <Container>
+    <Grid container justify={"center"} alignItems={"center"} direction={"column"}>
         {cards}
         <Box mt={8}>
           <Copyright/>
         </Box>
-    </Container>
+    </Grid>
   )
 };
 

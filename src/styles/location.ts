@@ -8,7 +8,7 @@ const styles = makeStyles({
   locationCard: {
     margin: '2rem 1rem 0 1rem',
     borderRadius: '2rem',
-    maxWidth: '400px'
+    width: '320px',
   },
   usersNeeded: {
     backgroundColor: SECONDARY01,

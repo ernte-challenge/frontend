@@ -3,25 +3,37 @@ import React from "react";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 import {UserJob} from "../../global";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import {PRIMARYBACKGROUND, SECONDARYBACKGROUND} from "../../styles/styles";
 
 interface UserJobListItemProperties {
   userJob: UserJob
   index: number
 }
 
+const useStyles = makeStyles({
+  root: {
+    borderTop: `1px solid ${SECONDARYBACKGROUND}`,
+  },
+});
+
 export default function UserJobListItem({userJob, index}: UserJobListItemProperties) {
-  const salaryString = `${userJob.location.salary} €/Std.`;
+  const salaryString = `${userJob.location.salary} EUR`;
+  const distanceString = `${userJob.location.distance} KM`;
+
+  const classes = useStyles();
 
   return (
-    <ListItem>
-      <Grid container justify="center" spacing={2}>
-        <Grid container>
-          <Grid justify="space-between" container>
-            <ListItemText primary={userJob.location.name}/>
+    <ListItem className={classes.root}>
+      <Grid container justify="center" spacing={1}>
+        <Grid container sm={12}>
+          <Grid justify="space-between" container spacing={1}>
+            <ListItemText style={{"width":"70%"}} primary={userJob.location.name}/>
+            <ListItemText secondary={salaryString}/>
           </Grid>
-          <Grid justify="space-between" container>
-            <ListItemText secondary={userJob.startDate}/>
-            <ListItemText primary={salaryString}/>
+          <Grid justify="space-between" container spacing={1}>
+            <ListItemText style={{"width":"70%"}} secondary={userJob.location.whatToDoSubline + ", ab " + userJob.startDate}/>
+            <ListItemText secondary={distanceString}/>
           </Grid>
         </Grid>
       </Grid>

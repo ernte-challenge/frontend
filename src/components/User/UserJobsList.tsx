@@ -4,7 +4,7 @@ import {UserJob} from "../../global";
 import {createStyles, List} from "@material-ui/core";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import {makeStyles} from "@material-ui/core/styles";
-import {PRIMARYBACKGROUND} from "../../styles/styles";
+import {PRIMARYBACKGROUND, SECONDARY01, SECONDARY02, SECONDARY03, SECONDARYBACKGROUND} from "../../styles/styles";
 import UserJobListItem from "./UserJobListItem";
 
 interface UserJobsListProperties {
@@ -18,7 +18,7 @@ const useStyles = makeStyles(() =>
     root: {
       width: '100%',
       maxWidth: 360,
-      backgroundColor: PRIMARYBACKGROUND,
+      backgroundColor: SECONDARY03,
       borderRadius: '0.7rem',
       marginTop: '2rem'
     },
