@@ -1,4 +1,5 @@
 export interface FarmLocation {
+  id: string;
   name: string;
   whatToDoSubline: string;
   usersRegistered: number;

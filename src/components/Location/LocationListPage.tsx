@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from "react";
-import styles from "../../styles/general";
 import LocationCard from "./LocationCard";
 import {API_LOCATIONS_PATH} from "../../routes";
 import {FarmLocation} from "../../global";
 
 const LocationListPage = () => {
-  const classes = styles();
-
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [locations, setLocations] = useState<Array<FarmLocation>>([]);
@@ -20,6 +17,7 @@ const LocationListPage = () => {
       })
         .then(response => response.json())
         .then(setLocations)
+        .then(data => setLoading(false))
         .catch(setError);
     })();
   }, []);
@@ -30,7 +28,7 @@ const LocationListPage = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  return locations.map((loc: FarmLocation) => (
+  const cards =  locations.map((loc: FarmLocation) => (
     <LocationCard
       locationName={loc.name}
       whatToDoSubline={loc.whatToDoSubline}
@@ -39,8 +37,10 @@ const LocationListPage = () => {
       distance={loc.distance}
       salary={loc.salary}
       imageUrl={loc.imageUrl}
+      key={loc.id}
     />
   ));
+  return <div>{cards}</div>
 };
 
 export default LocationListPage;
