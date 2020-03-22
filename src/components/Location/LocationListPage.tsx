@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import LocationCard from "./LocationCard";
-import {API_LOCATIONS_PATH} from "../../routes";
-import {FarmLocation} from "../../global";
-import {Container} from "@material-ui/core";
+import { API_LOCATIONS_PATH } from "../../routes";
+import { FarmLocation } from "../../global";
+import { Container } from "@material-ui/core";
 import Copyright from "../Copyright/Copyright";
 import Box from "@material-ui/core/Box";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -47,13 +47,13 @@ const LocationListPage = () => {
     />
   ));
   return (
-    <Grid container justify={"center"} alignItems={"center"} direction={"column"}>
-        {cards}
-        <Box mt={8}>
-          <Copyright/>
-        </Box>
-    </Grid>
-  )
+    <Container>
+      {cards}
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
 };
 
 export default LocationListPage;
