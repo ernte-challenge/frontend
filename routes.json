@@ -1,3 +1,4 @@
 {
+  "/api/register": "/api/users",
   "/api/*": "/$1"
 }

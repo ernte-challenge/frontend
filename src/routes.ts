@@ -9,4 +9,5 @@ export const EDIT_PROFILE_PATH: string = "/profile/edit";
 
 export const API_LOCATIONS_PATH: string = "/api/locations";
 export const API_LOGIN_PATH: string = "/api/login";
+export const API_REGISTER_PATH: string = "/api/register";
 export const API_JOBS_PATH: string = "/api/jobs";

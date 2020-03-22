@@ -62,6 +62,14 @@ export default function UserProfilePage({loggedIn = true}) {
           href={EDIT_PROFILE_PATH}
         >Profil bearbeiten
         </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          href={LOGIN_PAGE_PATH}
+        >Abmelden
+        </Button>
       </div>
       <Box mt={8}>
         <Copyright/>

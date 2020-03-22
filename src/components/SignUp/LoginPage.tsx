@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,8 +10,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {FORGOT_PASSWORD_PATH, REGISTER_PATH} from "../../routes";
+import {API_REGISTER_PATH, FORGOT_PASSWORD_PATH, REGISTER_PATH} from "../../routes";
 import Copyright from "../Copyright/Copyright";
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,7 +36,28 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginPage() {
   const classes = useStyles();
+  const [mail, setMail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [success, setSuccess] = React.useState<boolean>();
 
+  const handleLogin = () => {
+    setLoading(true);
+    fetch(API_REGISTER_PATH, {
+      method: 'POST',
+      body: JSON.stringify({
+        mail,
+        password
+      })
+    }).then(res => res.json())
+      .then(setSuccess)
+      .then(data => setLoading(false))
+      .catch(e => setSuccess(false))
+  };
+
+  if (success) {
+    return <Redirect to={"/profile"}/>
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
@@ -57,6 +79,8 @@ export default function LoginPage() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={mail}
+            onChange={(event) => setMail(event.target.value)}
           />
           <TextField
             variant="outlined"
@@ -68,13 +92,15 @@ export default function LoginPage() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
           />
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleLogin}
           >
             Anmelden
           </Button>
@@ -86,7 +112,7 @@ export default function LoginPage() {
             </Grid>
             <Grid item>
               <Link href={REGISTER_PATH} variant="body2">
-                "Hier Registrieren!"
+                Hier Registrieren!
               </Link>
             </Grid>
           </Grid>
