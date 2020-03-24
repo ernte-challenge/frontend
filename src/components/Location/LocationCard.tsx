@@ -22,6 +22,7 @@ interface LocationCardProperties {
   salary: number;
   imageUrl: string;
   id: string;
+  onBookmark: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const LocationCard = ({
@@ -32,7 +33,8 @@ const LocationCard = ({
   distance,
   salary,
   imageUrl,
-  id
+  id,
+  onBookmark
 }: LocationCardProperties) => {
   const classes = styles();
   return (
@@ -42,7 +44,7 @@ const LocationCard = ({
           <CardActionArea>
           <CardMedia
             className={classes.bannerImage}
-            image="https://image.shutterstock.com/image-photo/tractor-spraying-pesticides-on-soybean-600w-653708227.jpg"
+            image={imageUrl}
             title={locationName}
           >
             <Grid
@@ -57,9 +59,7 @@ const LocationCard = ({
               <Grid
                 aria-label="bookmark"
                 className={classes.bookmarkIcon}
-                onClick={() => {
-                  console.log(`${locationName} add to favorites`);
-                }}
+                onClick={onBookmark}
               >
                 <BookmarkBorderIcon />
               </Grid>

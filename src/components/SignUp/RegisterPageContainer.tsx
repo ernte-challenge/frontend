@@ -39,6 +39,7 @@ export default function RegisterPageContainer() {
           password,
           userType
         });
+        // TODO: Set User Context
       } catch (e) {
         setSuccess(false);
       }

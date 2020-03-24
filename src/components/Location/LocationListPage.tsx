@@ -42,6 +42,7 @@ const LocationListPage = () => {
       salary={loc.payedPerHour}
       imageUrl={loc.bannerImageSrc}
       id={loc.id}
+      onBookmark={(e : React.MouseEvent<HTMLDivElement>) => {console.log(e.target)}}
     />
   ));
   return (
