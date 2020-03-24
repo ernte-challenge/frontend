@@ -1,6 +1,5 @@
-import React, { useEffect, useState,  } from "react";
-import { useParams } from 'react-router-dom';
-import { FarmLocation } from "../../global";
+import React from "react";
+import {FarmLocation} from "../../global";
 import {
   Grid,
   Typography,
@@ -10,35 +9,12 @@ import {
   Button
 } from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
-import {API_LOCATIONS_PATH} from "../../routes";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
-const LocationDetailPage = () => {
-  const [error, setError] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [location, setLocation] = useState<FarmLocation | null>(null);
-  const { locationId } = useParams();
+interface LocationDetailPageProperties {
+  location: FarmLocation
+}
 
-  useEffect(() => {
-    (async () => {
-      setLoading(true);
-      setError(false);
-      await fetch(`${API_LOCATIONS_PATH}/${locationId}`, {
-        credentials: "same-origin"
-      })
-        .then(response => response.json())
-        .then(setLocation)
-        .then(data => setLoading(false))
-        .catch(setError);
-    })();
-  }, [locationId]);
-
-  if (error) {
-    return <div>Error!</div>;
-  }
-  if (loading || !location) {
-    return <LoadingSpinner/>;
-  }
+const LocationDetailPage = ({location}: LocationDetailPageProperties) => {
 
   const {
     street,
@@ -55,48 +31,48 @@ const LocationDetailPage = () => {
   } = location;
 
   return (
-    <Grid container style={{ backgroundColor: 'white', maxWidth: "480px", margin: "0 auto"  }}>
+    <Grid container style={{backgroundColor: 'white', maxWidth: "480px", margin: "0 auto"}}>
       <Grid>
         <img
-          style={{ height: "220px", width: "100%", backgroundSize: "cover"}}
+          style={{height: "220px", width: "100%", backgroundSize: "cover"}}
           className="bannerImage"
           src={bannerImageSrc}
           alt={bannerImageDescription}
         />
       </Grid>
-      <Container style={{ marginBottom: "64px" }}>
+      <Container style={{marginBottom: "64px"}}>
         <Grid
           container
           direction="row"
           justify="space-between"
           alignItems="center"
-          style={{ marginTop: "32px", marginBottom: "12px" }}
+          style={{marginTop: "32px", marginBottom: "12px"}}
         >
           <Grid item>
             <Typography variant="body2">Telefon</Typography>
-            <Typography style={{ color: "#84BEFF" }}>
+            <Typography style={{color: "#84BEFF"}}>
               {locationPhoneNumber}
             </Typography>
           </Grid>
           <Grid item>
             <Avatar
               aria-label="call-i"
-              style={{ backgroundColor: "#EEEEEF" }}
+              style={{backgroundColor: "#EEEEEF"}}
               onClick={() => {
                 console.log("CallIcon was clicked");
               }}
             >
-              <PhoneIcon style={{ color: "#0175FF" }} />
+              <PhoneIcon style={{color: "#0175FF"}}/>
             </Avatar>
           </Grid>
         </Grid>
-        <Divider />
+        <Divider/>
         <Grid
           container
           direction="row"
           justify="space-between"
           alignItems="center"
-          style={{ marginTop: "32px", marginBottom: "12px" }}
+          style={{marginTop: "32px", marginBottom: "12px"}}
         >
           <Grid item>
             <Typography variant="body2">Anschrift</Typography>
@@ -125,15 +101,15 @@ const LocationDetailPage = () => {
             </Avatar>
           </Grid>
         </Grid>
-        <Divider />
+        <Divider/>
 
         <Grid
           container
           direction="row"
-          style={{ marginTop: "32px", marginBottom: "12px" }}
+          style={{marginTop: "32px", marginBottom: "12px"}}
         >
           <Grid item>
-            <Typography variant="body1" style={{ fontWeight: 500 }}>
+            <Typography variant="body1" style={{fontWeight: 500}}>
               Ihre Tätigkeitsschwerpunkte:
             </Typography>
           </Grid>
@@ -147,15 +123,15 @@ const LocationDetailPage = () => {
             </ul>
           </Grid>
         </Grid>
-        <Divider />
+        <Divider/>
 
         <Grid
           container
           direction="row"
-          style={{ marginTop: "32px", marginBottom: "12px" }}
+          style={{marginTop: "32px", marginBottom: "12px"}}
         >
           <Grid item>
-            <Typography variant="body1" style={{ fontWeight: 500 }}>
+            <Typography variant="body1" style={{fontWeight: 500}}>
               Ihr Profil:
             </Typography>
           </Grid>
@@ -167,15 +143,15 @@ const LocationDetailPage = () => {
             </ul>
           </Grid>
         </Grid>
-        <Divider />
+        <Divider/>
 
         <Grid
           container
           direction="row"
-          style={{ marginTop: "32px", marginBottom: "12px" }}
+          style={{marginTop: "32px", marginBottom: "12px"}}
         >
           <Grid item>
-            <Typography variant="body1" style={{ fontWeight: 500 }}>
+            <Typography variant="body1" style={{fontWeight: 500}}>
               Wir bieten ihnen:
             </Typography>
           </Grid>
@@ -188,7 +164,7 @@ const LocationDetailPage = () => {
             </ul>
           </Grid>
         </Grid>
-        <Divider />
+        <Divider/>
         <Button
           variant="contained"
           style={{

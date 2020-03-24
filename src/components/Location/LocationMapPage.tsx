@@ -4,7 +4,7 @@ import styles from "../../styles/general";
 const LocationMapPage = () => {
   const classes = styles();
 
-  //TODO Add map
+  // TODO: add map functionality
 
   return (
     <div className={`${classes.fullScreenSize} ${classes.flexColumn}`}>
