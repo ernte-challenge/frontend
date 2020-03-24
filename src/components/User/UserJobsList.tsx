@@ -1,17 +1,14 @@
-import React, {useEffect, useState} from "react";
-import {API_JOBS_PATH} from "../../routes";
+import React from "react";
 import {UserJob} from "../../global";
 import {createStyles, List} from "@material-ui/core";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import {makeStyles} from "@material-ui/core/styles";
 import {SECONDARY03} from "../../styles/styles";
 import UserJobListItem from "./UserJobListItem";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 interface UserJobsListProperties {
-  userId: string,
-  title: string,
-  jobStatus: "requested" | "accepted"
+  userJobs: Array<UserJob>
+  title: string
 }
 
 const useStyles = makeStyles(() =>
@@ -26,34 +23,9 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-export default function UserJobsList({userId, title, jobStatus}: UserJobsListProperties) {
+export default function UserJobsList({userJobs, title}: UserJobsListProperties) {
   const classes = useStyles();
 
-  const [error, setError] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [userJobs, setUserJobs] = useState<Array<UserJob>>([]);
-
-  useEffect(() => {
-    (async () => {
-      setLoading(true);
-      setError(false);
-      await fetch(`${API_JOBS_PATH}?userId=${userId}&status=${jobStatus}`, {
-        credentials: "same-origin"
-      })
-        .then(response => response.json())
-        .then(setUserJobs)
-        .then(data => setLoading(false))
-        .catch(setError);
-    })();
-  }, [userId, jobStatus]);
-
-  if (error) {
-    return <div>Error!</div>;
-  }
-  if (loading) {
-    return <LoadingSpinner/>;
-  }
-  console.log(userJobs);
   const userJobListItems = userJobs.map((job, idx) => <UserJobListItem userJob={job} index={idx}/>);
   return (
     <List className={classes.root} subheader={<ListSubheader color="primary">{title}</ListSubheader>} component="nav">

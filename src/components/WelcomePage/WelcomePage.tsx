@@ -2,14 +2,14 @@ import React from 'react';
 import {Button} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {LOCATIONS_MAP_PATH, REGISTER_PATH} from "../../routes";
-import UserContext from "../../context/UserContext";
+import UserContext, {UserContextProperties} from "../../context/UserContext";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 
 const WelcomePage = () => {
   const firstName = (
     <UserContext.Consumer>
-      {user => <span>{user.firstName}</span>}
+      {(user: UserContextProperties) => <span>{user.firstName}</span>}
     </UserContext.Consumer>
   );
 

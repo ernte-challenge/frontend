@@ -1,4 +1,4 @@
-const sendRequest = async (path: string, method: string, body: Object) => {
+const sendRequest = async (path: string, method: string, body: Object = {}) => {
   const res = await fetch(path, {
     method,
     body: JSON.stringify(body)

@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
-import RegisterPage from "./components/SignUp/RegisterPage";
 import {
   LOCATIONS_PATH,
   LOCATIONS_MAP_PATH,
@@ -12,9 +11,9 @@ import {
 import UserProfilePage from "./components/User/UserProfilePage";
 import LocationListPage from "./components/Location/LocationListPage";
 import LocationMapPage from "./components/Location/LocationMapPage";
-import LocationDetailPage from "./components/Location/LocationDetailPage";
 import LoginPageContainer from "./components/SignUp/LoginPageContainer";
 import RegisterPageContainer from "./components/SignUp/RegisterPageContainer";
+import LocationDetailPageContainer from "./components/Location/LocationDetailPageContainer";
 
 const AppRoutes = () => {
   return (
@@ -32,7 +31,7 @@ const AppRoutes = () => {
         <RegisterPageContainer />
       </Route>
       <Route path={`${LOCATIONS_PATH}/:locationId`}>
-        <LocationDetailPage />
+        <LocationDetailPageContainer />
       </Route>
       <Route path={LOGIN_PAGE_PATH}>
         <LoginPageContainer />

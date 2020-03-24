@@ -4,7 +4,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 import {UserJob} from "../../global";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {PRIMARYBACKGROUND, SECONDARYBACKGROUND} from "../../styles/styles";
+import {SECONDARYBACKGROUND} from "../../styles/styles";
 
 interface UserJobListItemProperties {
   userJob: UserJob

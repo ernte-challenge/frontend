@@ -1,15 +1,6 @@
 import React, { useEffect, useState,  } from "react";
 import { useParams } from 'react-router-dom';
 import { FarmLocation } from "../../global";
-import {
-  Grid,
-  Typography,
-  Container,
-  Avatar,
-  Divider,
-  Button
-} from "@material-ui/core";
-import PhoneIcon from "@material-ui/icons/Phone";
 import {API_LOCATIONS_PATH} from "../../routes";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import LocationDetailPage from "./LocationDetailPage";

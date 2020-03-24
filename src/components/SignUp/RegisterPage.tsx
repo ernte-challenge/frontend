@@ -93,7 +93,6 @@ export default function RegisterPage({
               label="Vorname"
               name="firstName"
               autoComplete="given-name"
-              autoFocus
               value={firstName? firstName : ""}
               onChange={(e) => {
                 e.preventDefault();
@@ -109,7 +108,6 @@ export default function RegisterPage({
               label="Nachname"
               name="lastName"
               autoComplete="family-name"
-              autoFocus
               value={lastName? lastName : ""}
               onChange={(e) => {
                 e.preventDefault();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {EDIT_PROFILE_PATH, LOGIN_PAGE_PATH} from "../../routes";
 import {Redirect} from 'react-router-dom';
 import {makeStyles} from "@material-ui/core/styles";
@@ -9,7 +9,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Copyright from "../Copyright/Copyright";
-import UserJobsList from "./UserJobsList";
+import UserJobsListContainer from "./UserJobsListContainer";
 import Button from "@material-ui/core/Button";
 import UserContext from "../../context/UserContext";
 
@@ -33,12 +33,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UserProfilePage({loggedIn = true}) {
+export default function UserProfilePage() {
   const classes = useStyles();
 
-  const userId = "SOME_USER_ID";
+  const { loggedIn, userId } = useContext(UserContext);
 
-  if (!loggedIn) {
+  if (!loggedIn || !userId) {
     return <Redirect to={LOGIN_PAGE_PATH}/>
   }
 
@@ -52,8 +52,8 @@ export default function UserProfilePage({loggedIn = true}) {
         <Typography component="h1" variant="h5">
           Dein Profil
         </Typography>
-        <UserJobsList title='MEINE NÄCHSTEN JOBS' userId={userId} jobStatus="accepted"/>
-        <UserJobsList title='OFFENE BEWERBUNGEN' userId={userId} jobStatus="requested"/>
+        <UserJobsListContainer title='MEINE NÄCHSTEN JOBS' userId={userId} jobStatus="accepted"/>
+        <UserJobsListContainer title='OFFENE BEWERBUNGEN' userId={userId} jobStatus="requested"/>
         <Button
           fullWidth
           variant="contained"
