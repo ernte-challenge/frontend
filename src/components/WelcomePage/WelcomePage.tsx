@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Button} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {LOCATIONS_MAP_PATH, REGISTER_PATH} from "../../routes";
@@ -7,11 +7,8 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 
 const WelcomePage = () => {
-  const firstName = (
-    <UserContext.Consumer>
-      {(user: UserContextProperties) => <span>{user.firstName}</span>}
-    </UserContext.Consumer>
-  );
+  const { firstName }: UserContextProperties = useContext(UserContext);
+
 
   return (
     <div>
@@ -24,7 +21,7 @@ const WelcomePage = () => {
         <Grid container justify="center">
           <Box>
             <Typography component="h3" variant="h5">
-              {firstName && <span>Hallo, {firstName}!</span>}
+              <span>Hallo, {firstName? firstName : 'Unbekannter'}!</span>
             </Typography>
           </Box>
           <Grid container direction="column" alignContent="center">
