@@ -5,7 +5,7 @@ import { FarmLocation } from "../../global";
 import { Container } from "@material-ui/core";
 import Copyright from "../Copyright/Copyright";
 import Box from "@material-ui/core/Box";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const LocationListPage = () => {
   const [error, setError] = useState<boolean>(false);
@@ -30,8 +30,7 @@ const LocationListPage = () => {
     return <div>Error!</div>;
   }
   if (loading) {
-    //TODO: Spinner in externe Compopnent, und dann zentralisieren
-    return <CircularProgress disableShrink />;
+    return <LoadingSpinner/>;
   }
   const cards = locations.map((loc: FarmLocation) => (
     <LocationCard

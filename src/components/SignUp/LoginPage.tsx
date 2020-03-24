@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,9 +10,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {API_REGISTER_PATH, FORGOT_PASSWORD_PATH, REGISTER_PATH} from "../../routes";
+import {FORGOT_PASSWORD_PATH, REGISTER_PATH} from "../../routes";
 import Copyright from "../Copyright/Copyright";
-import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,32 +33,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginPage() {
+interface LoginPageProperties {
+  mail?: string,
+  onUpdateMail: (mail: string) => void,
+  password?: string,
+  onUpdatePassword: (mail: string) => void,
+  loading: boolean,
+  onSubmitForm: () => Promise<void>
+}
+
+export default function LoginPage({mail, onUpdateMail, password,
+                                    onUpdatePassword, onSubmitForm, loading}: LoginPageProperties) {
   const classes = useStyles();
-  const [mail, setMail] = useState<string>();
-  const [password, setPassword] = useState<string>();
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const [success, setSuccess] = React.useState<boolean>();
+  const signUpButtonText = loading ? "Melde an..." : "Anmelden";
 
-  const handleLogin = () => {
-    setLoading(true);
-    fetch(API_REGISTER_PATH, {
-      method: 'POST',
-      //TODO: ENCRTYPT PASSWORD
-
-      body: JSON.stringify({
-        mail,
-        password
-      })
-    }).then(res => res.json())
-      .then(setSuccess)
-      .then(data => setLoading(false))
-      .catch(e => setSuccess(false))
-  };
-
-  if (success) {
-    return <Redirect to={"/profile"}/>
-  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
@@ -82,7 +69,7 @@ export default function LoginPage() {
             autoComplete="email"
             autoFocus
             value={mail}
-            onChange={(event) => setMail(event.target.value)}
+            onChange={(event) => onUpdateMail(event.target.value)}
           />
           <TextField
             variant="outlined"
@@ -95,16 +82,16 @@ export default function LoginPage() {
             id="password"
             autoComplete="current-password"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={(event) => onUpdatePassword(event.target.value)}
           />
           <Button
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleLogin}
+            onClick={onSubmitForm}
           >
-            Anmelden
+            {signUpButtonText}
           </Button>
           <Grid container>
             <Grid item xs>

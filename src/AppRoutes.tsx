@@ -2,7 +2,6 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import RegisterPage from "./components/SignUp/RegisterPage";
-import LoginPage from "./components/SignUp/LoginPage";
 import {
   LOCATIONS_PATH,
   LOCATIONS_MAP_PATH,
@@ -14,6 +13,7 @@ import UserProfilePage from "./components/User/UserProfilePage";
 import LocationListPage from "./components/Location/LocationListPage";
 import LocationMapPage from "./components/Location/LocationMapPage";
 import LocationDetailPage from "./components/Location/LocationDetailPage";
+import LoginPageContainer from "./components/SignUp/LoginPageContainer";
 
 const AppRoutes = () => {
   return (
@@ -34,7 +34,7 @@ const AppRoutes = () => {
         <LocationDetailPage />
       </Route>
       <Route path={LOGIN_PAGE_PATH}>
-        <LoginPage />
+        <LoginPageContainer />
       </Route>
       <Route exact path="/">
         <WelcomePage />

@@ -4,9 +4,9 @@ import {UserJob} from "../../global";
 import {createStyles, List} from "@material-ui/core";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import {makeStyles} from "@material-ui/core/styles";
-import {PRIMARYBACKGROUND, SECONDARY01, SECONDARY02, SECONDARY03, SECONDARYBACKGROUND} from "../../styles/styles";
+import {SECONDARY03} from "../../styles/styles";
 import UserJobListItem from "./UserJobListItem";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 interface UserJobsListProperties {
   userId: string,
@@ -51,7 +51,7 @@ export default function UserJobsList({userId, title, jobStatus}: UserJobsListPro
     return <div>Error!</div>;
   }
   if (loading) {
-    return <CircularProgress disableShrink />;
+    return <LoadingSpinner/>;
   }
   console.log(userJobs);
   const userJobListItems = userJobs.map((job, idx) => <UserJobListItem userJob={job} index={idx}/>);

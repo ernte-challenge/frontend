@@ -10,8 +10,8 @@ import {
   Button
 } from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import {API_LOCATIONS_PATH} from "../../routes";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const LocationDetailPage = () => {
   const [error, setError] = useState<boolean>(false);
@@ -37,7 +37,7 @@ const LocationDetailPage = () => {
     return <div>Error!</div>;
   }
   if (loading || !location) {
-    return <CircularProgress disableShrink />;
+    return <LoadingSpinner/>;
   }
 
   const {

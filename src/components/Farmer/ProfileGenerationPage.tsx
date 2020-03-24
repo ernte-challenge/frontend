@@ -1,31 +1,29 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import {FORGOT_PASSWORD_PATH, REGISTER_PATH} from "../../routes";
+import {EDIT_PROFILE_PATH, LOGIN_PAGE_PATH} from "../../routes";
+import {Redirect} from 'react-router-dom';
+import {makeStyles} from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Avatar from "@material-ui/core/Avatar";
+import PersonIcon from "@material-ui/icons/Person";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import Copyright from "../Copyright/Copyright";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    paddingTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
-    width: '90%', // Fix IE 11 issue.
+    width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -33,86 +31,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginPage() {
+export default function FarmerProfilePage({loggedIn = true}) {
   const classes = useStyles();
+
+  const userId = "SOME_USER_ID";
+
+  if (!loggedIn) {
+    return <Redirect to={LOGIN_PAGE_PATH}/>
+  }
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline/>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon/>
+          <PersonIcon/>
         </Avatar>
         <Typography component="h1" variant="h5">
-          Registrieren
+          Dein Profil
         </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="E-Mail"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="firstName"
-            label="Vorname"
-            name="firstName"
-            autoComplete="given-name"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="lastName"
-            label="Nachname"
-            name="lastName"
-            autoComplete="family-name"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Passwort"
-            type="password"
-            id="password"
-            autoComplete="new-password"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Jetzt registrieren!
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href={FORGOT_PASSWORD_PATH} variant="body2">
-                Passwort vergessen?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href={REGISTER_PATH} variant="body2">
-                {"Hier Registrieren!"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          href={EDIT_PROFILE_PATH}
+        >Profil bearbeiten
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          href={LOGIN_PAGE_PATH}
+        >Abmelden
+        </Button>
       </div>
       <Box mt={8}>
         <Copyright/>
