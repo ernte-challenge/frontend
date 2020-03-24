@@ -11,7 +11,7 @@ import Box from "@material-ui/core/Box";
 import Copyright from "../Copyright/Copyright";
 import UserJobsList from "./UserJobsList";
 import Button from "@material-ui/core/Button";
-import UserContext from "../../UserContext";
+import UserContext from "../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

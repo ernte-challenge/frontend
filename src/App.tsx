@@ -5,7 +5,7 @@ import AppRoutes from "./AppRoutes";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import {MuiThemeProvider} from "@material-ui/core";
 import {BrowserRouter as Router} from "react-router-dom";
-import UserContext from "./UserContext";
+import UserContext from "./context/UserContext";
 
 const theme = createMuiTheme({
     palette: {
