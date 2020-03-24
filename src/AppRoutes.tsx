@@ -14,6 +14,7 @@ import LocationListPage from "./components/Location/LocationListPage";
 import LocationMapPage from "./components/Location/LocationMapPage";
 import LocationDetailPage from "./components/Location/LocationDetailPage";
 import LoginPageContainer from "./components/SignUp/LoginPageContainer";
+import RegisterPageContainer from "./components/SignUp/RegisterPageContainer";
 
 const AppRoutes = () => {
   return (
@@ -28,7 +29,7 @@ const AppRoutes = () => {
         <UserProfilePage />
       </Route>
       <Route path={REGISTER_PATH}>
-        <RegisterPage />
+        <RegisterPageContainer />
       </Route>
       <Route path={`${LOCATIONS_PATH}/:locationId`}>
         <LocationDetailPage />
