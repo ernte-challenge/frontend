@@ -14,6 +14,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,13 +48,14 @@ interface RegisterPageProperties {
   password?: string,
   onUpdatePassword: (mail: string) => void,
   loading: boolean,
-  onSubmitForm: () => Promise<void>
+  onSubmitForm: () => Promise<void>,
+  validationMessage?: string
 }
 
 export default function RegisterPage({
                                        mail, onUpdateMail, firstName,
                                        onUpdateFirstName, lastName, onUpdateLastName, password,
-                                       onUpdatePassword, userType, onUpdateUserType, loading, onSubmitForm
+                                       onUpdatePassword, userType, onUpdateUserType, loading, onSubmitForm, validationMessage
                                      }: RegisterPageProperties) {
   const classes = useStyles();
 
@@ -78,7 +80,7 @@ export default function RegisterPage({
               name="email"
               autoComplete="email"
               autoFocus
-              value={mail? mail : ""}
+              value={mail ? mail : ""}
               onChange={(e) => {
                 e.preventDefault();
                 onUpdateMail(e.target.value)
@@ -93,7 +95,7 @@ export default function RegisterPage({
               label="Vorname"
               name="firstName"
               autoComplete="given-name"
-              value={firstName? firstName : ""}
+              value={firstName ? firstName : ""}
               onChange={(e) => {
                 e.preventDefault();
                 onUpdateFirstName(e.target.value)
@@ -108,7 +110,7 @@ export default function RegisterPage({
               label="Nachname"
               name="lastName"
               autoComplete="family-name"
-              value={lastName? lastName : ""}
+              value={lastName ? lastName : ""}
               onChange={(e) => {
                 e.preventDefault();
                 onUpdateLastName(e.target.value)
@@ -124,7 +126,7 @@ export default function RegisterPage({
               type="password"
               id="password"
               autoComplete="new-password"
-              value={password? password : ""}
+              value={password ? password : ""}
               onChange={(e) => {
                 e.preventDefault();
                 onUpdatePassword(e.target.value);
@@ -133,7 +135,7 @@ export default function RegisterPage({
             <Box mt={3}>
               <FormControl component="fieldset" required={true}>
                 <FormLabel component="legend">Ich bin ...</FormLabel>
-                <RadioGroup name="userType" value={userType? userType : null} onChange={e => {
+                <RadioGroup name="userType" value={userType ? userType : null} onChange={e => {
                   e.preventDefault();
                   onUpdateUserType(e.target.value)
                 }}>
@@ -141,6 +143,10 @@ export default function RegisterPage({
                   <FormControlLabel value="user" control={<Radio/>} label="Erntehelfer:in"/>
                 </RadioGroup>
               </FormControl>
+            </Box>
+            <Box mt={3} style={{ height: '70px', color: 'red', display: 'flex', alignItems: 'center'}}>
+              {validationMessage && <ErrorOutlineIcon fontSize={"large"}/>}
+              <Typography style={{marginLeft: "1.5rem"}}>{validationMessage}</Typography>
             </Box>
             <Button
               fullWidth
