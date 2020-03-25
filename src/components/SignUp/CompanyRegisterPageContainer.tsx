@@ -1,48 +1,26 @@
-import React, {useContext} from 'react';
-import {API_USER_REGISTER_PATH} from "../../routes";
+import React from 'react';
+import {API_COMPANY_REGISTER_PATH, API_USER_REGISTER_PATH} from "../../routes";
 import sendRequest from "../../util/request";
-import RegisterPage from "./RegisterPage";
-import UserContext from "../../context/UserContext";
 import {validateEmail} from "../../util/validation";
+import CompanyRegisterPage from "./CompanyRegisterPage";
 
-interface UserDataResponse {
-  userId: string,
-  firstName: string,
-  lastName: string
-}
-
-export default function RegisterPageContainer() {
-  const [userType, setUserType] = React.useState<string>();
+export default function CompanyRegisterPageContainer() {
   const [success, setSuccess] = React.useState<boolean>();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [mail, setMail] = React.useState<string>();
-  const [firstName, setFirstName] = React.useState<string>();
-  const [lastName, setLastName] = React.useState<string>();
+  const [companyName, setCompanyName] = React.useState<string>();
   const [password, setPassword] = React.useState<string>();
   const [validationMessage, setValidationMessage] = React.useState<string>();
-
-  const {updateLoggedIn, updateUserId, updateFirstName, updateLastName} = useContext(UserContext);
-
-  const updateUserDetails = () => {
-    updateLoggedIn(true);
-    // TODO: request
-  };
 
   const getInputValidationErrorMessage = (): string | void => {
     if (!mail || !validateEmail(mail)) {
       return "Bitte tragen Sie eine gültige E-Mail-Adresse ein.";
     }
-    if (!firstName || firstName.length < 2) {
-      return "Bitte geben Sie Ihren Vornamen an.";
-    }
-    if (!lastName || lastName.length < 2) {
-      return "Bitte geben Sie Ihren Nachnamen an.";
+    if (!companyName || companyName.length < 2) {
+      return "Bitte geben Sie den Namen Ihres Betriebs an.";
     }
     if (!password || password.length < 8) {
       return "Bitte legen Sie ein Password bestehend aus mindestens 8 Zeichen fest.";
-    }
-    if (!userType) {
-      return "Bitte wählen Sie aus, ob Sie sich als Erntehelfer:in oder Landwirt:in registrieren möchten."
     }
   };
 
@@ -53,18 +31,15 @@ export default function RegisterPageContainer() {
     } else {
       setValidationMessage(undefined);
       try {
-        const res = await sendRequest(API_USER_REGISTER_PATH, 'POST', {
+        const res = await sendRequest(API_COMPANY_REGISTER_PATH, 'POST', {
           emailAddress: mail,
-          firstName,
-          lastName,
+          name: companyName,
           password,
-          userType
         });
         if (!res.ok) {
           setValidationMessage("Ups! Beim Registrieren ist ein technischer Fehler aufgetreten.");
           setSuccess(false);
         } else {
-          updateUserDetails();
           setSuccess(true);
         }
       } catch (e) {
@@ -76,19 +51,15 @@ export default function RegisterPageContainer() {
   };
 
   const handleUpdateMail = (mail: string): void => setMail(mail);
-  const handleUpdateFirstName = (firstName: string): void => setFirstName(firstName);
-  const handleUpdateLastName = (lastName: string): void => setLastName(lastName);
+  const handleUpdateCompanyName = (companyName: string): void => setCompanyName(companyName);
 // TODO: Encrypt Password
   const handleUpdatePassword = (password: string): void => setPassword(password);
-  const handleUpdateUserType = (userType: string): void => setUserType(userType);
 
 //TODO: Show SVG
   const successForm = (
     <div>
-      <div>Vielen Dank!</div>
-      <div>Super, wie du Landwirte unterstützt, die Ernte zu retten!</div>
-      <div>Du hast gerade 300kg Kartoffeln gerettet!</div>
-      <div>Mach weiter so!</div>
+      <div>Herzlich willkommen!</div>
+      <div>Der Betrieb {companyName} ist nun auf Stadt.Land.Ernte angemeldet!</div>
     </div>
   );
 
@@ -97,13 +68,11 @@ export default function RegisterPageContainer() {
   }
 
   return (
-    <RegisterPage
+    <CompanyRegisterPage
       mail={mail} onUpdateMail={handleUpdateMail}
       loading={loading}
-      firstName={firstName} onUpdateFirstName={handleUpdateFirstName}
-      lastName={lastName} onUpdateLastName={handleUpdateLastName}
+      companyName={companyName} onUpdateCompanyName={handleUpdateCompanyName}
       password={password} onUpdatePassword={handleUpdatePassword}
-      userType={userType} onUpdateUserType={handleUpdateUserType}
       onSubmitForm={handleSubmit} validationMessage={validationMessage}
     />
   );

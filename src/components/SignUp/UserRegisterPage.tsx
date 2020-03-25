@@ -43,8 +43,6 @@ interface RegisterPageProperties {
   onUpdateFirstName: (firstName: string) => void,
   lastName?: string,
   onUpdateLastName: (lastName: string) => void,
-  userType?: string,
-  onUpdateUserType: (userType: string) => void,
   password?: string,
   onUpdatePassword: (mail: string) => void,
   loading: boolean,
@@ -52,10 +50,10 @@ interface RegisterPageProperties {
   validationMessage?: string
 }
 
-export default function RegisterPage({
+export default function UserRegisterPage({
                                        mail, onUpdateMail, firstName,
                                        onUpdateFirstName, lastName, onUpdateLastName, password,
-                                       onUpdatePassword, userType, onUpdateUserType, loading, onSubmitForm, validationMessage
+                                       onUpdatePassword, loading, onSubmitForm, validationMessage
                                      }: RegisterPageProperties) {
   const classes = useStyles();
 
@@ -132,18 +130,6 @@ export default function RegisterPage({
                 onUpdatePassword(e.target.value);
               }}
             />
-            <Box mt={3}>
-              <FormControl component="fieldset" required={true}>
-                <FormLabel component="legend">Ich bin ...</FormLabel>
-                <RadioGroup name="userType" value={userType ? userType : null} onChange={e => {
-                  e.preventDefault();
-                  onUpdateUserType(e.target.value)
-                }}>
-                  <FormControlLabel value="farmer" control={<Radio/>} label="Landwirt:in"/>
-                  <FormControlLabel value="user" control={<Radio/>} label="Erntehelfer:in"/>
-                </RadioGroup>
-              </FormControl>
-            </Box>
             <ValidationMessageBox message={validationMessage}/>
             <Button
               fullWidth

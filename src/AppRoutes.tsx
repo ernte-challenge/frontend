@@ -5,15 +5,16 @@ import {
   LOCATIONS_PATH,
   LOCATIONS_MAP_PATH,
   LOGIN_PAGE_PATH,
-  REGISTER_PATH,
-  USER_PROFILE_PATH
+  USER_REGISTER_PATH,
+  USER_PROFILE_PATH, COMPANY_REGISTER_PATH
 } from "./routes";
 import UserProfilePage from "./components/User/UserProfilePage";
 import LocationListPage from "./components/Location/LocationListPage";
 import LocationMapPage from "./components/Location/LocationMapPage";
 import LoginPageContainer from "./components/SignUp/LoginPageContainer";
-import RegisterPageContainer from "./components/SignUp/RegisterPageContainer";
+import UserRegisterPageContainer from "./components/SignUp/UserRegisterPageContainer";
 import LocationDetailPageContainer from "./components/Location/LocationDetailPageContainer";
+import CompanyRegisterPageContainer from "./components/SignUp/CompanyRegisterPageContainer";
 
 const AppRoutes = () => {
   return (
@@ -27,8 +28,11 @@ const AppRoutes = () => {
       <Route path={USER_PROFILE_PATH}>
         <UserProfilePage />
       </Route>
-      <Route path={REGISTER_PATH}>
-        <RegisterPageContainer />
+      <Route path={USER_REGISTER_PATH}>
+        <UserRegisterPageContainer />
+      </Route>
+      <Route path={COMPANY_REGISTER_PATH}>
+        <CompanyRegisterPageContainer />
       </Route>
       <Route path={`${LOCATIONS_PATH}/:locationId`}>
         <LocationDetailPageContainer />

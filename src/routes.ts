@@ -1,7 +1,8 @@
 export const LOCATIONS_PATH: string = "/locations";
 export const USER_PROFILE_PATH: string = "/profile";
 export const LOCATIONS_MAP_PATH: string = "/locations/map";
-export const REGISTER_PATH: string = "/register";
+export const USER_REGISTER_PATH: string = "/user/register";
+export const COMPANY_REGISTER_PATH: string = "/company/register";
 export const LOGIN_PAGE_PATH: string = "/login";
 export const FORGOT_PASSWORD_PATH: string = "/";
 export const INFO_PATH: string = "/info";

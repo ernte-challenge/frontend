@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {FORGOT_PASSWORD_PATH, REGISTER_PATH} from "../../routes";
+import {FORGOT_PASSWORD_PATH, USER_REGISTER_PATH} from "../../routes";
 import Copyright from "../Copyright/Copyright";
 import ValidationMessageBox from "./ValidationMessageBox";
 
@@ -105,7 +105,7 @@ export default function LoginPage({
               </Link>
             </Grid>
             <Grid item>
-              <Link href={REGISTER_PATH} variant="body2">
+              <Link href={USER_REGISTER_PATH} variant="body2">
                 Hier Registrieren!
               </Link>
             </Grid>
