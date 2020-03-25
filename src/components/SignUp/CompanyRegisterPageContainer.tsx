@@ -52,7 +52,6 @@ export default function CompanyRegisterPageContainer() {
 
   const handleUpdateMail = (mail: string): void => setMail(mail);
   const handleUpdateCompanyName = (companyName: string): void => setCompanyName(companyName);
-// TODO: Encrypt Password
   const handleUpdatePassword = (password: string): void => setPassword(password);
 
 //TODO: Show SVG

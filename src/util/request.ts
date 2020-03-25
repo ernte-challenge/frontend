@@ -1,4 +1,5 @@
 const sendRequest = async (path: string, method: string, body: Object = {}) => {
+  console.log("Request Body: ", JSON.stringify(body));
   const res = await fetch(path, {
     method,
     body: JSON.stringify(body)

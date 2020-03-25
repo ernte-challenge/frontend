@@ -67,7 +67,6 @@ export default function UserRegisterPageContainer() {
   const handleUpdateMail = (mail: string): void => setMail(mail);
   const handleUpdateFirstName = (firstName: string): void => setFirstName(firstName);
   const handleUpdateLastName = (lastName: string): void => setLastName(lastName);
-// TODO: Encrypt Password
   const handleUpdatePassword = (password: string): void => setPassword(password);
 
 //TODO: Show SVG
