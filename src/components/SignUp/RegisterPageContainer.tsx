@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {API_REGISTER_PATH} from "../../routes";
+import {API_USER_REGISTER_PATH} from "../../routes";
 import sendRequest from "../../util/request";
 import RegisterPage from "./RegisterPage";
 import UserContext from "../../context/UserContext";
@@ -55,15 +55,20 @@ export default function RegisterPageContainer() {
     } else {
       setValidationMessage(undefined);
       try {
-        const res = await sendRequest(API_REGISTER_PATH, 'POST', {
+        const res = await sendRequest(API_USER_REGISTER_PATH, 'POST', {
           emailAddress: mail,
           firstName,
           lastName,
           password,
           userType
         });
-        updateUserDetails(res.data);
-        setSuccess(true);
+        if (!res.ok) {
+          setValidationMessage("Ups! Beim Anmelden ist ein technischer Fehler aufgetreten.");
+          setSuccess(false);
+        } else {
+          updateUserDetails(res.data);
+          setSuccess(true);
+        }
       } catch (e) {
         setSuccess(false);
       }

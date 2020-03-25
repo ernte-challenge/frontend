@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {API_LOGIN_PATH} from "../../routes";
+import {API_USER_LOGIN_PATH} from "../../routes";
 import {Redirect} from 'react-router-dom';
 import LoginPage from "./LoginPage";
 import sendRequest from "../../util/request";
@@ -14,10 +14,13 @@ export default function LoginPageContainer() {
     setLoading(true);
     // TODO: Encrypt password
     try {
-      const res = await sendRequest(API_LOGIN_PATH, 'POST', {
+      const res = await sendRequest(API_USER_LOGIN_PATH, 'POST', {
         emailAddress: mail,
         password: password
       });
+      if (!res.ok) {
+        setSuccess(false);
+      }
     } catch (e) {
       setSuccess(false);
     }
