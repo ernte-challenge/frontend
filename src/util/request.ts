@@ -2,7 +2,13 @@ const sendRequest = async (path: string, method: string, body: Object = {}) => {
   console.log("Request Body: ", JSON.stringify(body));
   const res = await fetch(path, {
     method,
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    redirect: 'follow'
   });
   if (res.status < 400) {
     return await res.json();

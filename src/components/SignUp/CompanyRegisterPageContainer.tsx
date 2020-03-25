@@ -1,5 +1,5 @@
 import React from 'react';
-import {API_COMPANY_REGISTER_PATH, API_USER_REGISTER_PATH} from "../../routes";
+import {API_COMPANY_REGISTER_PATH} from "../../routes";
 import sendRequest from "../../util/request";
 import {validateEmail} from "../../util/validation";
 import CompanyRegisterPage from "./CompanyRegisterPage";
