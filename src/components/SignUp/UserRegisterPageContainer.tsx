@@ -37,32 +37,32 @@ export default function UserRegisterPageContainer() {
   };
 
   const handleSubmit = async () => {
-    const validateText = getInputValidationErrorMessage();
-    if (validateText) {
-      setValidationMessage(validateText);
-    } else {
-      setValidationMessage(undefined);
-      try {
-        const res = await sendRequest(API_USER_REGISTER_PATH, 'POST', {
-          emailAddress: mail,
-          firstName,
-          lastName,
-          password,
-        });
-        if (!res.ok) {
-          setValidationMessage("Ups! Beim Registrieren ist ein technischer Fehler aufgetreten.");
-          setSuccess(false);
-        } else {
-          updateUserDetails();
-          setSuccess(true);
-        }
-      } catch (e) {
+    const inputValidationErrorMessage = getInputValidationErrorMessage();
+    if (inputValidationErrorMessage) {
+      setValidationMessage(inputValidationErrorMessage);
+      return;
+    }
+    setValidationMessage(undefined);
+    try {
+      const res = await sendRequest(API_USER_REGISTER_PATH, 'POST', {
+        emailAddress: mail,
+        firstName,
+        lastName,
+        password,
+      });
+      if (res.status === 200 || res.status === 201) {
+        updateUserDetails();
+        setSuccess(true);
+      } else {
         setValidationMessage("Ups! Beim Registrieren ist ein technischer Fehler aufgetreten.");
         setSuccess(false);
       }
-      setLoading(false);
+    } catch (e) {
+      setValidationMessage("Ups! Beim Registrieren ist ein Netzwerkfehler aufgetreten.");
+      setSuccess(false);
     }
-  };
+    setLoading(false);
+  }
 
   const handleUpdateMail = (mail: string): void => setMail(mail);
   const handleUpdateFirstName = (firstName: string): void => setFirstName(firstName);
