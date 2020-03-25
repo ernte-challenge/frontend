@@ -12,6 +12,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {FORGOT_PASSWORD_PATH, REGISTER_PATH} from "../../routes";
 import Copyright from "../Copyright/Copyright";
+import ValidationMessageBox from "./ValidationMessageBox";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -40,10 +41,13 @@ interface LoginPageProperties {
   onUpdatePassword: (mail: string) => void,
   loading: boolean,
   onSubmitForm: () => Promise<void>
+  validationMessage?: string
 }
 
-export default function LoginPage({mail, onUpdateMail, password,
-                                    onUpdatePassword, onSubmitForm, loading}: LoginPageProperties) {
+export default function LoginPage({
+                                    mail, onUpdateMail, password,
+                                    onUpdatePassword, onSubmitForm, loading, validationMessage
+                                  }: LoginPageProperties) {
   const classes = useStyles();
   const signUpButtonText = loading ? "Melde an..." : "Anmelden";
 
@@ -84,6 +88,7 @@ export default function LoginPage({mail, onUpdateMail, password,
             value={password}
             onChange={(event) => onUpdatePassword(event.target.value)}
           />
+          <ValidationMessageBox message={validationMessage}/>
           <Button
             fullWidth
             variant="contained"

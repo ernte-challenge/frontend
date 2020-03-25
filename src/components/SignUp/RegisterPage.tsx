@@ -14,7 +14,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import ValidationMessageBox from "./ValidationMessageBox";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -144,10 +144,7 @@ export default function RegisterPage({
                 </RadioGroup>
               </FormControl>
             </Box>
-            <Box mt={3} style={{ height: '70px', color: 'red', display: 'flex', alignItems: 'center'}}>
-              {validationMessage && <ErrorOutlineIcon fontSize={"large"}/>}
-              <Typography style={{marginLeft: "1.5rem"}}>{validationMessage}</Typography>
-            </Box>
+            <ValidationMessageBox message={validationMessage}/>
             <Button
               fullWidth
               variant="contained"

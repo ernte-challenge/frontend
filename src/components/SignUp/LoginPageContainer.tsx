@@ -9,6 +9,7 @@ export default function LoginPageContainer() {
   const [password, setPassword] = useState<string>();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [success, setSuccess] = React.useState<boolean>();
+  const [validationMessage, setValidationMessage] = React.useState<string>();
 
   const handleLogin = async () => {
     setLoading(true);
@@ -19,9 +20,13 @@ export default function LoginPageContainer() {
         password: password
       });
       if (!res.ok) {
+        setValidationMessage("Ups! Beim Anmelden ist ein technischer Fehler aufgetreten.");
         setSuccess(false);
+      } else {
+        setSuccess(true);
       }
     } catch (e) {
+      setValidationMessage("Ups! Beim Anmelden ist ein technischer Fehler aufgetreten.");
       setSuccess(false);
     }
     setLoading(false);
@@ -47,6 +52,7 @@ export default function LoginPageContainer() {
       password={password}
       onSubmitForm={handleLogin}
       loading={loading}
+      validationMessage={validationMessage}
     />
   );
 }

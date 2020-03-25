@@ -23,11 +23,9 @@ export default function RegisterPageContainer() {
 
   const {updateLoggedIn, updateUserId, updateFirstName, updateLastName} = useContext(UserContext);
 
-  const updateUserDetails = (data: UserDataResponse) => {
+  const updateUserDetails = () => {
     updateLoggedIn(true);
-    updateUserId(data.userId);
-    updateFirstName(data.firstName);
-    updateLastName(data.lastName);
+    // TODO: request
   };
 
   const getInputValidationErrorMessage = (): string | void => {
@@ -63,13 +61,14 @@ export default function RegisterPageContainer() {
           userType
         });
         if (!res.ok) {
-          setValidationMessage("Ups! Beim Anmelden ist ein technischer Fehler aufgetreten.");
+          setValidationMessage("Ups! Beim Registrieren ist ein technischer Fehler aufgetreten.");
           setSuccess(false);
         } else {
-          updateUserDetails(res.data);
+          updateUserDetails();
           setSuccess(true);
         }
       } catch (e) {
+        setValidationMessage("Ups! Beim Registrieren ist ein technischer Fehler aufgetreten.");
         setSuccess(false);
       }
       setLoading(false);
